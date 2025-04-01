@@ -1,0 +1,17 @@
+{
+  "name": "Name",
+  "type": "Type",
+  "image": "Image",
+  "actions": "Actions",
+  "fetch_filter_button": "Fetch",
+  "make_action_button": "Make Action",
+
+  "task_fetch": "Open Menu Actions",
+  "assign_task_button": "Assign To User",
+  "form_header_teacher": "Add Teacher",
+  "form_button_teacher": "Send",
+  "form_button_version": "Send",
+  "student_table": "Students",
+  "show_fetch": "Show Fetch"
+
+}
