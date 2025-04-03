@@ -15,4 +15,5 @@ export type Student = {
   name: string;
   grade: string;
   phone: number;
+  assignments: Assignment[];
 };

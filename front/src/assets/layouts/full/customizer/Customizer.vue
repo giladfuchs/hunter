@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watch} from 'vue';
+import { ref, watch } from 'vue';
 import { useTheme } from 'vuetify';
 import { useCustomizerStore } from '@/common/stores/customizer';
 import { ChecksIcon } from 'vue-tabler-icons';
@@ -53,15 +53,13 @@ const DarkthemeColors = ref([
 // themes font Family options
 const fontFamily = ref(['Roboto', 'Poppins', 'Inter']);
 // themes font Family options
-
-
 </script>
 
 <!------------------------------------->
 <!-- Customizer -->
 <!------------------------------------->
 <template style="z-index: 21">
-  <v-navigation-drawer app temporary elevation="10"  location="right" v-model="customizer.Customizer_drawer" width="280">
+  <v-navigation-drawer app temporary elevation="10" location="right" v-model="customizer.Customizer_drawer" width="280">
     <perfect-scrollbar style="height: 100%">
       <div class="pa-5">
         <v-row>
@@ -70,7 +68,7 @@ const fontFamily = ref(['Roboto', 'Poppins', 'Inter']);
             <!-- Preset color -->
             <!------------------------------------->
 
-              <v-card variant="outlined">
+            <v-card variant="outlined">
               <v-card-item class="py-3">
                 <v-card-title class="text-subtitle-1 font-weight-medium">Preset Color</v-card-title>
               </v-card-item>

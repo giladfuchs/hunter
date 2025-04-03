@@ -6,7 +6,6 @@ import type { Header } from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import { FilterFetchType } from '@/common/types';
 import { get_columns_easy_table_by_title } from '@/common/types/table';
-import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -25,7 +24,6 @@ const listCards: any = computed(() => {
       })
     : [];
 });
-const route = useRoute();
 
 const props = defineProps<Props>();
 const headers = computed<Header[]>(() =>

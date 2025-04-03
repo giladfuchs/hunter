@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { computed, defineProps, ref } from 'vue';
 import { PhoneIcon, SchoolIcon } from 'vue-tabler-icons';
-
 import { FilterFetchType, type Student } from '@/common/types';
-
 import { useGeneralStore } from '@/common/stores/apps/general';
 
 interface Props {

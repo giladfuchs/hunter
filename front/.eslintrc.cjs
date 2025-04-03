@@ -10,7 +10,7 @@ module.exports = {
   rules: {
     'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': 'off',
-    'prettier/prettier': ['error', { endOfLine: 'off' }],
-    'javascript.validate.enable': false
+    'prettier/prettier': ['error', { endOfLine: 'auto' }], // Use valid endOfLine value
+    'javascript.validate.enable': 1
   }
 };

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-// common components
 import UiParentCard from '@/views/components/shared/UiParentCard.vue';
 import type { inputFilters } from '@/common/types/form/input';
-
 import { FilterFetchType } from '@/common/types';
 
 interface Props {
@@ -22,7 +20,6 @@ const controls = ref<inputFilters>(props.controls);
     <v-col :cols="props.no_button ? 12 : 4" :sm="props.no_button ? 12 : 4">
       <UiParentCard :title="props.no_button ? undefined : $t(`form_header_${props.type}`)">
         <v-col cols="12" style="display: flex; flex-direction: row; margin: -1rem -1rem" v-for="field in Object.keys(controls)">
-          <!--              <v-col cols="12" sm="12"  >-->
           <v-checkbox
             v-if="typeof controls[field].value === 'boolean'"
             v-model="controls[field].value"
@@ -61,7 +58,6 @@ const controls = ref<inputFilters>(props.controls);
             color="primary"
             dense
           />
-          <!--              </v-col>-->
         </v-col>
         <v-col v-if="!props.no_button" cols="12" class="d-flex align-center justify-center">
           <v-btn color="primary" @click="$emit('sendForm', controls)">{{ $t(`form_button_${props.type}`) }}</v-btn>

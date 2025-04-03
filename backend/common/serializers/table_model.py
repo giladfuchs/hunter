@@ -1,7 +1,7 @@
 from typing import Optional, List
 from sqlmodel import Field, Relationship, UniqueConstraint
-from sqlalchemy import BigInteger
 
+from common.enums import Grade
 from common.serializers import IdBaseTable
 
 
@@ -9,7 +9,7 @@ class Teacher(IdBaseTable, table=True):
     __table_args__ = (
         UniqueConstraint("phone", "id", name="phone_id"),
     )
-    phone: int = Field(sa_column=BigInteger())
+    phone: float
     students: Optional[List["Student"]] = Relationship(sa_relationship_kwargs={"cascade": "all, delete"},
                                                        back_populates="teacher")
 
@@ -25,8 +25,8 @@ class Student(IdBaseTable, table=True):
     teacher: Teacher = Relationship(back_populates="students")
 
     name: str
-    grade: str
-    phone: int = Field(sa_column=BigInteger())
+    grade: Grade
+    phone: float
     assignments: Optional[List["Assignment"]] = Relationship(sa_relationship_kwargs={"cascade": "all, delete"},
                                                              back_populates="student")
 

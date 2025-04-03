@@ -2,7 +2,7 @@
 import type { Assignment } from '@/common/types';
 
 interface Props {
-  assignments: [Assignment];
+  assignments: Assignment[];
 }
 
 const props = defineProps<Props>();

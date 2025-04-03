@@ -1,6 +1,4 @@
 from functools import reduce
-import collections, functools, operator
-from typing import List
 
 
 def list_obj_to_obj(collection, value, key, default=None):

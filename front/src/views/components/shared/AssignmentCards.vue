@@ -5,7 +5,7 @@ import { type Assignment, FilterFetchType } from '@/common/types';
 import { useGeneralStore } from '@/common/stores/apps/general';
 
 interface Props {
-  assignments: [Assignment];
+  assignments: Assignment[];
 }
 const store = useGeneralStore();
 

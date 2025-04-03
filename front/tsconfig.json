@@ -1,8 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue",
-    "src/common/types/.d.ts"
-  ],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/common/types/.d.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -10,7 +8,6 @@
     },
     "allowJs": true,
     "lib": ["es2017"]
-
   },
 
   "references": [

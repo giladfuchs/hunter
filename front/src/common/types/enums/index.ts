@@ -1,3 +1,2 @@
-export * from "./general"
-export * from "./ThemeType"
-
+export * from './general';
+export * from './ThemeType';

@@ -43,26 +43,24 @@ class AuthService:
     def validate_token(cls, token: str) -> TeacherModel.table:
         try:
             payload = jwt.decode(token, conf.JWT_SECRET, algorithms=[conf.JWT_ALGORITHM])
-            id = payload.get("id")
-            teacher: TeacherModel.table = TeacherModel.get_by_id(_id=id)
+            _id = payload.get("id")
+            teacher: TeacherModel.table = TeacherModel.get_by_id(_id=_id)
             return teacher
 
         except (JWTError, Exception):
-            if type(token)==str:
-                raise cls.error_authenticate()
-            return
+            raise cls.error_authenticate()
 
     @classmethod
-    def create_token(cls, id: int) -> Token:
+    def create_token(cls, _id: int) -> Token:
         now = datetime.utcnow()
         payload = {
             "iat": now,
             "nbf": now,
             "exp": now + timedelta(seconds=int(conf.JWT_EXP)),
-            "id": id,
+            "id": _id,
         }
         token = jwt.encode(payload, conf.JWT_SECRET, algorithm=conf.JWT_ALGORITHM)
-        return Token(access_token=token, id=id)
+        return Token(access_token=token, id=_id)
 
 
 auth_service = AuthService()

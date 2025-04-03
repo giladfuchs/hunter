@@ -5,6 +5,7 @@ from sqlmodel import SQLModel
 from common.db_model import engines
 
 from common.db_model.models import TeacherModel, StudentModel, AssignmentModel
+from common.enums import Grade
 
 fake = Faker()
 
@@ -20,7 +21,7 @@ def create_fake_data():
     # Create fake teachers
     for _ in range(5):  # Adjust the number as needed
         teacher = TeacherModel.table(
-            phone=randint(10 ** 2, 10 ** 5)
+            phone=randint(10 ** 9, 10 ** 10)
         )
         TeacherModel.add_or_find_update('add', teacher)
 
@@ -31,8 +32,8 @@ def create_fake_data():
         teacher = choice(teachers)
         student = StudentModel.table(
             name=fake.name(),
-            grade=choice(["A", "B", "C", "D", "E"]),
-            phone=randint(10 ** 2, 10 ** 5),
+            grade=choice(Grade.values()),
+            phone=randint(10 ** 9, 10 ** 10),
             teacher_id=teacher.id
         )
         StudentModel.add_or_find_update('add', student)
