@@ -40,7 +40,7 @@ const itemsSearching = computed(() => {
         <TableHeaderDashBoard ref="ref_header_table" v-bind="{ child: ref_base_table, title, columns }" />
 
         <div>
-          <TableBase v-bind="{ columns, rows: itemsSearching }" />
+          <TableBase ref="ref_base_table" v-bind="{ columns, rows: itemsSearching }" />
         </div>
       </UiParentCard>
     </v-col>

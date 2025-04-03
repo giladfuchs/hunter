@@ -12,8 +12,8 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const exportToCsv = () => {
-  props.child.exportToCsv();
+const exportDataAsCsv = () => {
+  props.child.exportDataAsCsv();
 };
 
 const search_value = ref('');
@@ -42,7 +42,7 @@ defineExpose({
 
     <v-col cols="4" sm="3" md="3">
       <div class="d-flex gap-2 justify-end">
-        <v-btn @click="exportToCsv" icon variant="text">
+        <v-btn @click="exportDataAsCsv" icon variant="text">
           <PrinterIcon size="20" />
         </v-btn>
         <v-btn :href="`${title}/add`" rounded="md" active-color="secondary" icon color="secondary" variant="text">

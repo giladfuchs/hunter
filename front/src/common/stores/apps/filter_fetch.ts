@@ -22,7 +22,6 @@ export const useFilterFetchStore = defineStore({
   actions: {
     async fetch_rows(model: FilterFetchType, data: any = {}) {
       try {
-        console.log(data);
 
         const response = await axios.post(`${model}/filter`, Object.keys(data).length === 0 ? undefined : data);
         let res_data = response.data;
