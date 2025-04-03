@@ -3,14 +3,13 @@ import {computed, defineProps,  ref} from 'vue';
 import {PhoneIcon, SchoolIcon} from 'vue-tabler-icons';
 
 import {
-  FilterFetchType,
+  FilterFetchType, Student,
 } from "@/common/types";
 
 import {useGeneralStore} from "@/common/stores/apps/general";
 
 interface Props {
-  student: {};
-
+  student: Student;
 }
 
 const store = useGeneralStore();

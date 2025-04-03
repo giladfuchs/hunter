@@ -4,9 +4,7 @@ import {ref,  } from 'vue';
 import 'vue3-easy-data-table/dist/style.css';
 
 import {FilterFetchType} from "@/common/types";
-import {useFilterFetchStore} from "@/common/stores/apps/filter_fetch";
 
-const store = useFilterFetchStore();
 
 
 interface Props {

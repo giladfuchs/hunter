@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-// common components
 import {useRoute, useRouter} from "vue-router";
 import {FilterFetchType, get_form_by_model, type inputFilters,} from "@/common/types";
 import SendForm from '@/views/components/form/SendForm.vue';

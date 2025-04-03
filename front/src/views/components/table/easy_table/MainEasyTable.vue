@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import {ref,  computed} from 'vue';
+import {ref, computed} from 'vue';
 import UiParentCard from '@/views/components/shared/UiParentCard.vue';
 
-// common components
 import type {Header} from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import { FilterFetchType} from "@/common/types";
+import {FilterFetchType} from "@/common/types";
 import {get_columns_easy_table_by_title} from "@/common/types/table";
 import {useRoute} from "vue-router";
 import {useI18n} from "vue-i18n";
 
-const { t } = useI18n();
-
+const {t} = useI18n();
 
 interface Props {
   rows: [];
@@ -28,8 +26,8 @@ const listCards: any = computed(() => {
 const route = useRoute()
 
 const props = defineProps<Props>()
-const headers = computed<Header[]>(() => get_columns_easy_table_by_title(props.model).map((row:any)=> {
-  return {...row,text:t(row.text)}
+const headers = computed<Header[]>(() => get_columns_easy_table_by_title(props.model).map((row: any) => {
+  return {...row, text: t(row.text)}
 }));
 
 
@@ -55,7 +53,7 @@ const themeColor = ref('rgb(var(--v-theme-secondary))');
 
     <v-col cols="12" md="12">
       <UiParentCard>
-        <v-row   justify="space-between"
+        <v-row justify="space-between"
                class="d-flex flex-row align-center justify-center mb-1 ">
           <h1 class="ml-3">{{ props.title }}</h1>
 

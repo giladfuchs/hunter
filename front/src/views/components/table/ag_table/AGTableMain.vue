@@ -9,7 +9,6 @@ import TableHeaderDashBoard from "./AGTableHeader.vue"
 import UiParentCard from '@/views/components/shared/UiParentCard.vue';
 import {get_columns_by_title} from "@/common/types/table/ag_table";
 import  {FilterFetchType} from "@/common/types";
-import {useFilterFetchStore} from "@/common/stores/apps/filter_fetch";
 
 interface Props {
   title: FilterFetchType;
@@ -18,7 +17,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const store_filter_fetch = useFilterFetchStore();
 
 const ref_base_table = ref(null);
 const ref_header_table = ref(null);

@@ -9,6 +9,13 @@ export enum FilterFetchType {
 
 export type   Assignment = {
     id: number
-    title: string,
+    title: string
     detail: string
+}
+
+export type   Student = {
+    id: number
+    name: string
+    grade: string
+    phone: number
 }
