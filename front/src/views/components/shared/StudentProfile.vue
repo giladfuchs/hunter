@@ -3,7 +3,7 @@ import {computed, defineProps,  ref} from 'vue';
 import {PhoneIcon, SchoolIcon} from 'vue-tabler-icons';
 
 import {
-  FilterFetchType, Student,
+  FilterFetchType,type Student,
 } from "@/common/types";
 
 import {useGeneralStore} from "@/common/stores/apps/general";

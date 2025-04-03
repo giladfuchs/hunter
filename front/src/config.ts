@@ -18,7 +18,7 @@ const config: ConfigProps = {
     actTheme: 'DarkGreenTheme',
     fontTheme: 'Roboto',
     inputBg: false,
-    apiUrl: 'http://0.0.0.0:5000',
+    apiUrl: 'http://0.0.0.0:5001',
     boxed: false
 };
 
