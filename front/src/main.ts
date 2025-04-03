@@ -17,8 +17,7 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import { createI18n } from 'vue-i18n';
 
 import messages from '@/common/utils/locales/messages';
-import piniaPersist from 'pinia-plugin-persist'
-
+import piniaPersist from 'pinia-plugin-persist';
 
 const i18n = createI18n({
   locale: 'en',

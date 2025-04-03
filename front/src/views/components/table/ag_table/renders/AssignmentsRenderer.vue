@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AssignmentsHover from "@/views/components/shared/AssignmentsHover.vue";
+import AssignmentsHover from '@/views/components/shared/AssignmentsHover.vue';
 
 const props = defineProps({
-  params: String,
+  params: String
 });
 </script>
 
@@ -13,7 +13,7 @@ const props = defineProps({
     </template>
 
     <v-card>
-      <AssignmentsHover :assignments="props.params.value"/>
+      <AssignmentsHover :assignments="props.params.value" />
     </v-card>
   </v-menu>
 </template>

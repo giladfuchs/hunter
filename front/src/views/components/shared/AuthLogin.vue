@@ -1,66 +1,59 @@
 <script setup lang="ts">
-import {ref} from 'vue';
-import {useAuthStore} from '@/common/stores/auth';
-import {Form, Field} from 'vee-validate';
+import { ref } from 'vue';
+import { useAuthStore } from '@/common/stores/auth';
+import { Form, Field } from 'vee-validate';
 
 const valid = ref(false);
 const id = ref();
 const phone = ref();
 
-function validate(values: any, {setErrors}: any) {
+function validate(values: any, { setErrors }: any) {
   const authStore = useAuthStore();
-  return authStore.login({id: id.value, phone: phone.value}).catch((error: any) => setErrors({apiError: error}));
+  return authStore.login({ id: id.value, phone: phone.value }).catch((error: any) => setErrors({ apiError: error }));
 }
 </script>
 
 <template>
-
   <v-row>
     <v-col class="d-flex align-center">
-
-      <v-divider class="custom-devider"/>
+      <v-divider class="custom-devider" />
     </v-col>
   </v-row>
   <h5 class="text-h5 text-center my-4 mb-8">Sign in with ID & Phone</h5>
   <Form @submit="validate" class="mt-7 loginForm" v-slot="{ errors, isSubmitting }">
     <v-text-field
-        v-model="id"
-        label="ID"
-        class="mt-4 mb-8"
-        required
-        density="comfortable"
-        hide-details="auto"
-        variant="outlined"
-        type="number"
-        color="primary"
+      v-model="id"
+      label="ID"
+      class="mt-4 mb-8"
+      required
+      density="comfortable"
+      hide-details="auto"
+      variant="outlined"
+      type="number"
+      color="primary"
     ></v-text-field>
     <v-text-field
-        v-model="phone"
-        label="Phone"
-        required
-        density="comfortable"
-        variant="outlined"
-        color="primary"
-        hide-details="auto"
-        type="number"
-        class="pwdInput"
+      v-model="phone"
+      label="Phone"
+      required
+      density="comfortable"
+      variant="outlined"
+      color="primary"
+      hide-details="auto"
+      type="number"
+      class="pwdInput"
     ></v-text-field>
 
-    <div class="d-sm-flex align-center mt-2 mb-7 mb-sm-0">
-
-
-    </div>
-    <v-btn color="secondary" :loading="isSubmitting" block class="mt-2" variant="flat" size="large" :disabled="valid"
-           type="submit">
+    <div class="d-sm-flex align-center mt-2 mb-7 mb-sm-0"></div>
+    <v-btn color="secondary" :loading="isSubmitting" block class="mt-2" variant="flat" size="large" :disabled="valid" type="submit">
       Sign In
-    </v-btn
-    >
+    </v-btn>
     <div v-if="errors.apiError" class="mt-2">
       <v-alert color="error">{{ errors.apiError }}</v-alert>
     </div>
   </Form>
   <div class="mt-5 text-right">
-    <v-divider/>
+    <v-divider />
     <v-btn variant="plain" to="/teacher/add" class="mt-2 text-capitalize mr-n2">Don't Have an account?</v-btn>
   </div>
 </template>
