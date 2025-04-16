@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9bf99d90-db64-4afd-a1b0-27df5a95973f" name="Changes" comment=" a lot of change">
+      <change afterPath="$PROJECT_DIR$/../fastapi-postgres/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/images/hunter.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/images/img-error-bg.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/images/img-error-blue.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/images/img-error-purple.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/images/img-error-text.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/full/FullLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/full/customizer/Customizer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/full/vertical-header/ProfileDD.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/full/vertical-header/VerticalHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/plugins/vuetify.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/_override.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VAlert.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VButtons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VCard.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VCarousel.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VField.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VInput.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VNavigationDrawer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VShadow.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VTextField.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/components/_VTextarea.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/layout/_container.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/layout/_dark.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/layout/_horizontal.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/layout/_sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/layout/_topbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/pages/_datatable.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/scss/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/theme/DarkTheme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/assets/layouts/theme/LightTheme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/router/Routes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/router/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/stores/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/stores/customizer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/stores/general.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/enums/ThemeType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/enums/general.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/enums/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/form/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/form/input.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/table/ag_table.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/table/easy_table.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/types/table/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/utils/axios.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/utils/locales/en.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/utils/locales/messages.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/utils/transformation/find.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/utils/transformation/form.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/common/utils/transformation/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/apps/Login.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/apps/StudentView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/apps/StudentsTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/form/AddEditForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/form/FormFields.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/general/AssignmentCards.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/general/AssignmentsHover.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/general/AuthLogin.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/general/StudentProfile.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/shared/Error.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/shared/UiChildCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/shared/UiParentCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/table/ag_table/AGTableBase.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/table/ag_table/AGTableHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/table/ag_table/AGTableMain.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/table/ag_table/renders/ActionRender.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/table/ag_table/renders/AssignmentsRenderer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/src/views/components/table/easy_table/MainEasyTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/tsconfig.vite-config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vue3/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/routers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/app/routers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/routers/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/app/routers/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/routers/crud_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/app/routers/crud_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/routers/teacher.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/app/routers/teacher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/db_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/db_model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/db_model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/db_model/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/enums/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/enums/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/serializers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/serializers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/serializers/table_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/serializers/table_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/utils/errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/utils/errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/utils/list_find.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/utils/list_find.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/common/utils/parse_obj.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/common/utils/parse_obj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/debug.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/debug.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/format.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/format.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/service/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/service/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/service/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/service/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/service/create_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/service/create_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-postgres/start_server.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/hunter.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/img-error-bg.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/img-error-blue.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/img-error-purple.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/img-error-text.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/full/FullLayout.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/full/customizer/Customizer.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/full/vertical-header/ProfileDD.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/full/vertical-header/VerticalHeader.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/plugins/vuetify.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/_override.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VAlert.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VButtons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VCard.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VCarousel.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VField.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VInput.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VNavigationDrawer.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VShadow.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VTextField.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/components/_VTextarea.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/layout/_container.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/layout/_dark.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/layout/_horizontal.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/layout/_sidebar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/layout/_topbar.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/pages/_datatable.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/scss/style.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/theme/DarkTheme.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/layouts/theme/LightTheme.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/router/Routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/router/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/stores/auth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/stores/customizer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/stores/general.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/enums/ThemeType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/enums/general.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/enums/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/form/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/form/input.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/table/ag_table.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/table/easy_table.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/types/table/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/axios.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/locales/en.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/locales/messages.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/transformation/find.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/transformation/form.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/utils/transformation/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/apps/Login.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/apps/StudentView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/apps/StudentsTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/form/AddEditForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/form/FormFields.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/general/AssignmentCards.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/general/AssignmentsHover.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/general/AuthLogin.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/general/StudentProfile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/shared/Error.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/shared/UiChildCard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/shared/UiParentCard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/table/ag_table/AGTableBase.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/table/ag_table/AGTableHeader.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/table/ag_table/AGTableMain.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/table/ag_table/renders/ActionRender.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/table/ag_table/renders/AssignmentsRenderer.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/table/easy_table/MainEasyTable.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.vite-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2vDsPmviypvCgyxjTarXCKOPjcW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/giladfuchs/Desktop/coding/js/hunter/front&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/giladfuchs/Desktop/coding/js/hunter/front/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/views/components/shared" />
+      <recent name="$PROJECT_DIR$/src/views/components/general" />
+      <recent name="$PROJECT_DIR$/src/views/apps" />
+      <recent name="$PROJECT_DIR$/src/views/pages" />
+      <recent name="$PROJECT_DIR$/src/common/stores" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.lint" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9bf99d90-db64-4afd-a1b0-27df5a95973f" name="Changes" comment="" />
+      <created>1743690958524</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743690958524</updated>
+      <workItem from="1743690959614" duration="23535000" />
+      <workItem from="1744736060740" duration="3759000" />
+      <workItem from="1744804737005" duration="2049000" />
+    </task>
+    <task id="LOCAL-00001" summary="a">
+      <option name="closed" value="true" />
+      <created>1743691805841</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743691805841</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Work on enum for name url, language.">
+      <option name="closed" value="true" />
+      <created>1744638743865</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744638743865</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Work on enum for name url, language.">
+      <option name="closed" value="true" />
+      <created>1744638873579</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744638873579</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Work on delete/add message. Logout if 401">
+      <option name="closed" value="true" />
+      <created>1744641076572</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744641076572</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744724960818</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744724960818</updated>
+    </task>
+    <task id="LOCAL-00006" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744727009844</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744727009844</updated>
+    </task>
+    <task id="LOCAL-00007" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744728195371</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1744728195371</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744728411079</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744728411079</updated>
+    </task>
+    <task id="LOCAL-00009" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744729433980</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744729433980</updated>
+    </task>
+    <task id="LOCAL-00010" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744736089636</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744736089636</updated>
+    </task>
+    <task id="LOCAL-00011" summary=" a lot of change">
+      <option name="closed" value="true" />
+      <created>1744809536412</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744809536412</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="a" />
+    <MESSAGE value="Work on enum for name url, language." />
+    <MESSAGE value="Work on delete/add message. Logout if 401" />
+    <MESSAGE value=" a lot of change" />
+    <option name="LAST_COMMIT_MESSAGE" value=" a lot of change" />
+  </component>
+</project>
