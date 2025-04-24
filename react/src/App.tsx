@@ -19,7 +19,8 @@ import NavigationScroll from 'layout/NavigationScroll';
 import Snackbar from 'ui-component/extended/Snackbar';
 
 // auth provider
-import { JWTProvider } from 'contexts/JWTContext';
+import { AuthProvider } from 'contexts/AuthContext';
+import AxiosInterceptor from './contexts/AxiosInterceptor';
 
 declare module '@mui/styles/defaultTheme' {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -38,12 +39,14 @@ const App = () => {
                 {/* <RTLLayout> */}
                 <Locales>
                     <NavigationScroll>
-                        <JWTProvider>
-                            <>
-                                <Routes />
-                                <Snackbar />
-                            </>
-                        </JWTProvider>
+                        <AuthProvider>
+                            <AxiosInterceptor>
+                                <>
+                                    <Routes />
+                                    <Snackbar />
+                                </>
+                            </AxiosInterceptor>
+                        </AuthProvider>
                     </NavigationScroll>
                 </Locales>
                 {/* </RTLLayout> */}
