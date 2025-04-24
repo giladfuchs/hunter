@@ -2,7 +2,19 @@ import React from 'react';
 import MainCard from 'ui-component/cards/MainCard';
 
 import SubCard from 'ui-component/cards/SubCard';
-import { Divider, Grid, List, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import {
+    Divider,
+    Grid,
+    IconButton,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemSecondaryAction,
+    ListItemText,
+    Typography
+} from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import PhonelinkRingTwoToneIcon from '@mui/icons-material/PhonelinkRingTwoTone';
 
@@ -10,12 +22,6 @@ import { Assignment, DefaultRootStateProps, ModelType, Student } from '../types'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchListByModel } from '../store/modelSlice';
-
-const AssignmentCard = ({ assignment }: { assignment: Assignment }) => (
-    <SubCard title={assignment.title} contentSX={{ p: 2 }}>
-        <Typography variant="body2">Due: {assignment.detail}</Typography>
-    </SubCard>
-);
 
 const StudentProfile = ({ student }: { student: Student }) => (
     <Grid item lg={4} xs={12}>
@@ -59,6 +65,38 @@ const StudentProfile = ({ student }: { student: Student }) => (
     </Grid>
 );
 
+const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => (
+    <>
+        <MainCard title="Assignments" container spacing={2}>
+            {assignments.map((assignment: Assignment) => (
+                <Grid item xs={12} sm={6} md={4} key={assignment.id}>
+                    <SubCard contentSX={{ p: 2 }}>
+                        <Typography variant="h3" color="textPrimary" sx={{ fontWeight: 'bold' }}>
+                            {assignment.title}
+                        </Typography>
+                        <Divider sx={{ p: 1 }} />
+                        <Typography variant="body2" color="textPrimary">
+                            {assignment.detail}
+                        </Typography>
+                        <Grid container spacing={1} sx={{ mt: 1 }}>
+                            <Grid item>
+                                <IconButton size="small" color="error">
+                                    <DeleteIcon fontSize="small" />
+                                </IconButton>
+                            </Grid>
+                            <Grid item>
+                                <IconButton size="small" color="secondary">
+                                    <EditIcon fontSize="small" />
+                                </IconButton>
+                            </Grid>
+                        </Grid>
+                    </SubCard>
+                </Grid>
+            ))}
+        </MainCard>
+    </>
+);
+
 const StudentView = () => {
     const params = useParams();
     const { id } = params as {
@@ -86,16 +124,7 @@ const StudentView = () => {
                 <StudentProfile student={student} />
 
                 <Grid item xs={12} md={8}>
-                    <Typography variant="h4" gutterBottom>
-                        Assignments
-                    </Typography>
-                    <Grid container spacing={2}>
-                        {student.assignments.map((assignment: Assignment) => (
-                            <Grid item xs={12} sm={6} md={4} key={assignment.id}>
-                                <AssignmentCard assignment={assignment} />
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <AssignmentCard assignments={student.assignments} />
                 </Grid>
             </Grid>
         </MainCard>
