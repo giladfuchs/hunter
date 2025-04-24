@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ModelType } from '../types';
+import { FilterQuery, ModelType } from '../types';
 
 export const API = axios.create({
     baseURL: 'http://localhost:5001',
@@ -20,7 +20,7 @@ API.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-export const fetch_or_delete_rows = async (model: ModelType): Promise<any[]> => {
-    const response = await API.post(`/${model}`);
+export const fetch_or_delete_rows = async (model: ModelType, data: FilterQuery | {} = {}): Promise<any[]> => {
+    const response = await API.post(`/${model}`, Object.keys(data).length === 0 ? undefined : data);
     return response.data;
 };

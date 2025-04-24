@@ -1,6 +1,7 @@
-import { ModelType, Student } from './general';
+import { Assignment, ModelType, Student } from './general';
 import { ColDef } from 'ag-grid-community';
 
+export type AGTableModelType = Student;
 export const columns_student: ColDef<Student>[] = [
     {
         field: 'name',
@@ -18,21 +19,16 @@ export const columns_student: ColDef<Student>[] = [
         headerName: 'Assignments',
         field: 'assignments',
         cellRenderer: 'AssignmentsRender'
+    },
+    {
+        headerName: 'View',
+        field: 'id',
+        cellRenderer: 'ActionRender',
+        width: 100
     }
-    // {
-    //     field: 'assignments',
-    //     width: 160,
-    //     cellRenderer: 'AssignmentsRenderer'
-    // },
-    // {
-    //     headerName: 'View',
-    //     field: 'id',
-    //     width: 160,
-    //     cellRenderer: 'ActionRender'
-    // }
 ];
 
-export const get_columns_by_title = (title: ModelType): ColDef<Student>[] => {
+export const get_columns_by_title = (title: ModelType): ColDef<AGTableModelType>[] => {
     let columns = [];
     switch (title) {
         case ModelType.student:
@@ -43,5 +39,5 @@ export const get_columns_by_title = (title: ModelType): ColDef<Student>[] => {
             columns = [...columns_student];
     }
 
-    return columns;
+    return columns as ColDef<AGTableModelType>[];
 };

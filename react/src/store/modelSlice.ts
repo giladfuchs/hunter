@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction, ActionReducerMapBuilder } from '@reduxjs/toolkit';
-import { ModelType } from '../types';
+import { FilterQuery, ModelType } from '../types';
 import { fetch_or_delete_rows } from '../utils/axios';
 
 interface ModelState {
@@ -20,10 +20,14 @@ const initialState: ModelState = {
     error: null
 };
 
-export const fetchListByModel = createAsyncThunk('models/fetch_or_delete_rows', async (model: ModelType) => {
-    const data = await fetch_or_delete_rows(model);
-    return { model, data };
-});
+export const fetchListByModel = createAsyncThunk(
+    'models/fetch_or_delete_rows',
+    async (params: { model: ModelType; data?: FilterQuery }, thunkAPI) => {
+        const { model, data = {} } = params;
+        const res = await fetch_or_delete_rows(model, data);
+        return { model, res };
+    }
+);
 
 const modelSlice = createSlice({
     name: 'models',
@@ -41,11 +45,11 @@ const modelSlice = createSlice({
                     state: any,
                     action: PayloadAction<{
                         model: ModelType;
-                        data: any[];
+                        res: any[];
                     }>
                 ) => {
                     state.loading = false;
-                    state.list[action.payload.model] = action.payload.data;
+                    state.list[action.payload.model] = action.payload.res;
                 }
             )
             .addCase(fetchListByModel.rejected, (state: ModelState, action: any) => {

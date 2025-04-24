@@ -48,7 +48,6 @@ export const AuthProvider = ({ children }: { children: React.ReactElement }) => 
                             isLoggedIn: true
                         }
                     });
-                    navigate(`/${ModelType.student}`);
                 } else {
                     logout();
                 }
@@ -59,7 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactElement }) => 
         };
 
         init();
-    }, [logout, navigate]);
+    }, [logout]);
 
     return <AuthContext.Provider value={{ ...state, login, logout }}>{children}</AuthContext.Provider>;
 };

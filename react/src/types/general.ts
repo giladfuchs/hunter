@@ -38,3 +38,14 @@ export type Student = {
     phone: number;
     assignments: Assignment[];
 };
+export interface DBQuery {
+    opt: string;
+    key: string;
+    value: string | number;
+}
+
+export interface FilterQuery {
+    query: DBQuery[];
+    relation_model?: boolean;
+    delete_rows?: boolean;
+}

@@ -1,10 +1,9 @@
 import { AgGridReact } from 'ag-grid-react';
 import { ColDef } from 'ag-grid-community';
 
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { Student } from '../types';
+import { AGTableModelType } from '../types/ag_table';
 import AssignmentsRender from '../ui-component/table/ag-grid/AssignmentsRender';
+import ActionRender from '../ui-component/table/ag-grid/ActionRender';
 
 const defaultColDef: ColDef = {
     resizable: true,
@@ -12,19 +11,20 @@ const defaultColDef: ColDef = {
     sortable: true
 };
 
-const StudentsTable = ({ cols, rows }: { cols: ColDef<Student>[]; rows: any[] }) => (
+const AGTableChild = ({ cols, rows }: { cols: ColDef<AGTableModelType>[]; rows: any[] }) => (
     <div className="ag-theme-alpine" style={{ height: 600, width: '100%' }}>
-        <AgGridReact<Student>
+        <AgGridReact<AGTableModelType>
             rowData={rows}
             columnDefs={cols}
             defaultColDef={defaultColDef}
             paginationPageSize={10}
             rowSelection="multiple"
             frameworkComponents={{
-                AssignmentsRender
+                AssignmentsRender,
+                ActionRender
             }}
         />
     </div>
 );
 
-export default StudentsTable;
+export default AGTableChild;

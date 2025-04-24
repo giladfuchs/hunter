@@ -23,7 +23,8 @@ const init = async () => {
 onMounted(async () => {
   await init();
 });
-const student_id = computed<string>(() => route.params.id as string);
+const   const [hasFetched, setHasFetched] = React.useState(false);
+student_id = computed<string>(() => route.params.id as string);
 const student = computed<Student>(() => store.list[ModelType.student][0]);
 </script>
 <template>
