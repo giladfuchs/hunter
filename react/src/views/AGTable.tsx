@@ -18,11 +18,8 @@ export default function AGTable() {
         model: ModelType;
     };
     const dispatch = useDispatch();
-    const { list } = useSelector((state: DefaultRootStateProps) => state.models);
-
+    const rows: any[] = useSelector((state: DefaultRootStateProps) => state.models.list[model]);
     const cols: ColDef<AGTableModelType>[] = get_columns_by_title(model);
-
-    const rows: any[] = list[model];
 
     React.useEffect(() => {
         dispatch(fetchListByModel({ model }));

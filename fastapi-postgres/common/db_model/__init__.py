@@ -22,10 +22,10 @@ class DBModel:
     @classmethod
     def _fetch_or_delete_rows_callable(cls, *args: Any, **kwargs: Any) -> CALLABLE_LIST:
         def route(
-            filter_query: FilterQuery = None,
-            to_dict: bool = False,
-            offset: int = 0,
-            limit: int = 1000,
+                filter_query: FilterQuery = None,
+                to_dict: bool = False,
+                offset: int = 0,
+                limit: int = 1000,
         ) -> List:
             if filter_query is None:
                 filter_query = FilterQuery()
@@ -61,7 +61,7 @@ class DBModel:
 
     @classmethod
     def add_or_find_update(
-        cls, add_or_id: str, body: BaseTable, **kwargs: Any
+            cls, add_or_id: str, body: BaseTable, **kwargs: Any
     ) -> BaseTable:
 
         db_obj: BaseTable = body
@@ -70,6 +70,7 @@ class DBModel:
         if add_or_id != "add":
             filter_query = FilterQuery(
                 query=[DBQuery(key="id", opt="eq", value=add_or_id)]
+                , relation_model=False
             )
             db_obj: BaseTable = cls.fetch_or_delete_rows(
                 filter_query=filter_query, limit=1, to_dict=False
@@ -89,8 +90,8 @@ class DBModel:
     def _add_or_find_update_callable(cls, *args: Any, **kwargs: Any) -> CALLABLE_LIST:
 
         def route(
-            add_or_id: str,
-            body: Union[None, cls.table],
+                add_or_id: str,
+                body: Union[None, cls.table],
         ) -> BaseTable:
             return cls.add_or_find_update(add_or_id=add_or_id, body=body)
 
@@ -109,12 +110,12 @@ class DBModel:
 
     @classmethod
     def fetch_or_delete_rows(
-        cls,
-        filter_query: FilterQuery = FilterQuery(),
-        to_dict: bool = True,
-        offset: int = 0,
-        limit: int = 1000,
-        **kwargs
+            cls,
+            filter_query: FilterQuery = FilterQuery(),
+            to_dict: bool = True,
+            offset: int = 0,
+            limit: int = 1000,
+            **kwargs
     ) -> Union["cls.table", List[BaseTable]]:
         statement = (
             delete(cls.table)

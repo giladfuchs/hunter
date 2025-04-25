@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction, ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { FilterQuery, ModelType } from '../types';
-import { fetch_or_delete_rows } from '../utils/axios';
+import { API, fetch_or_delete_rows } from '../utils/axios';
 
 interface ModelState {
     list: {
@@ -26,6 +26,14 @@ export const fetchListByModel = createAsyncThunk(
         const { model, data = {} } = params;
         const res = await fetch_or_delete_rows(model, data);
         return { model, res };
+    }
+);
+
+export const createOrUpdateRow = createAsyncThunk(
+    'models/create_or_update_row',
+    async ({ model, data, id }: { model: ModelType; data: Record<string, any>; id: string }) => {
+        const response = await API.post(`${model}/${id}`, data);
+        return response.data;
     }
 );
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
-// material-ui
 import { styled, useTheme, Theme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
 
@@ -71,9 +70,6 @@ const MainLayout = () => {
     // Handle left drawer
     const leftDrawerOpened = useSelector((state: DefaultRootStateProps) => state.customization.opened);
     const dispatch = useDispatch();
-    const handleLeftDrawerToggle = () => {
-        dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
-    };
 
     React.useEffect(() => {
         dispatch({ type: SET_MENU, opened: !matchDownMd });
@@ -95,7 +91,7 @@ const MainLayout = () => {
                 }}
             >
                 <Toolbar>
-                    <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
+                    <Header />
                 </Toolbar>
             </AppBar>
 
