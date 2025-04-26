@@ -8,13 +8,13 @@ import { DefaultRootStateProps, get_table_head_cell, ModelType } from 'types';
 import { fetchListByModel } from '../../store/modelSlice';
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { FormattedMessage } from 'react-intl';
 
 const MuiTable = ({ model }: { model: ModelType }) => {
-    const { cells, heads } = get_table_head_cell(model);
+    const cells = get_table_head_cell(model);
     const dispatch = useDispatch();
 
-    const { list, loading, error } = useSelector((state: DefaultRootStateProps) => state.models);
-    const tableData: any[] = list[model];
+    const tableData = useSelector((state: DefaultRootStateProps) => state.models.list[model]);
 
     React.useEffect(() => {
         dispatch(fetchListByModel({ model }));
@@ -23,7 +23,7 @@ const MuiTable = ({ model }: { model: ModelType }) => {
         <Grid item xs={12}>
             <MainCard
                 content={false}
-                title={model}
+                title={<FormattedMessage id={`${model}_table`} />}
                 secondary={
                     <IconButton size="medium" color="primary" component={Link} to={`/form/${model}/add`}>
                         <AddBoxIcon fontSize="medium" />
@@ -36,7 +36,7 @@ const MuiTable = ({ model }: { model: ModelType }) => {
                             <TableRow>
                                 {cells.map((cell: string) => (
                                     <TableCell key={cell} align="left">
-                                        {cell}
+                                        <FormattedMessage id={cell} />
                                     </TableCell>
                                 ))}
                             </TableRow>

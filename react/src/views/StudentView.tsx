@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteRowById, fetchListByModel, setAssignments, setUserAndStudentId } from '../store/modelSlice';
 import { AppDispatch } from 'store';
+import { FormattedMessage } from 'react-intl';
 
 const StudentProfile = ({ student }: { student: Student }) => {
     const dispatch = useDispatch<AppDispatch>(); // use your typed dispatch
@@ -118,7 +119,7 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
     };
     return (
         <MainCard
-            title="Assignments"
+            title={<FormattedMessage id={`${ModelType.assignment}_table`} />}
             sx={{ height: '100%' }}
             secondary={
                 <IconButton size="medium" color="primary" component={Link} to={`/form/${ModelType.assignment}/add`}>

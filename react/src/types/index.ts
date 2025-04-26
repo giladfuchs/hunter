@@ -30,15 +30,6 @@ export type OverrideIcon =
     | FunctionComponent<any>
     | TablerIcon;
 
-export type HeadCell = {
-    field?: string;
-    id: string;
-    numeric: boolean;
-    label: string;
-    disablePadding?: string | boolean | undefined;
-    align?: 'left' | 'right' | 'inherit' | 'center' | 'justify' | undefined;
-};
-
 export type NavItemType = {
     id?: string;
     icon?: GenericCardProps['iconPrimary'];

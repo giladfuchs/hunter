@@ -3,10 +3,11 @@ import * as React from 'react';
 import { IconButton, Paper } from '@mui/material';
 
 import MainCard from 'ui-component/cards/MainCard';
+import { FormattedMessage } from 'react-intl';
 
 import AGTableChild from './AGTableChild';
 import { AGTableModelType, get_columns_by_title } from '../types/ag_table';
-import { DefaultRootStateProps, ModelType, Student } from '../types';
+import { DefaultRootStateProps, ModelType } from '../types';
 import { ColDef } from 'ag-grid-community';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListByModel } from '../store/modelSlice';
@@ -28,7 +29,7 @@ export default function AGTable() {
     return (
         <MainCard
             content={false}
-            title={model}
+            title={<FormattedMessage id={`${model}_table`} />}
             secondary={
                 <IconButton size="medium" color="primary" component={Link} to={`/form/${model}/add`}>
                     <AddBoxIcon fontSize="medium" />

@@ -35,6 +35,7 @@ export type Student = {
     name: string;
     grade: string;
     phone: number;
+    teacher_id: number;
     assignments: Assignment[];
 };
 

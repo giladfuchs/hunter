@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Button, TextField, Autocomplete } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard';
 import { FieldAutoComplete, FormField, FormType } from '../../types/form';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 type FormFieldProps = {
     field: FormField;
@@ -9,6 +10,9 @@ type FormFieldProps = {
 };
 
 const FieldRenderer = ({ field, onChange }: FormFieldProps) => {
+    const intl = useIntl();
+    const placeholder = intl.formatMessage({ id: field.key });
+
     switch (field.type) {
         case FormType.AutoComplete:
             return (
@@ -28,8 +32,8 @@ const FieldRenderer = ({ field, onChange }: FormFieldProps) => {
                 <TextField
                     fullWidth
                     variant="outlined"
-                    label={field.key}
-                    placeholder={field.key}
+                    label={placeholder}
+                    placeholder={placeholder}
                     value={field.value}
                     type={field.type === FormType.NUMBER ? 'number' : 'text'}
                     multiline={field.type === FormType.TEXTAREA}
@@ -75,7 +79,7 @@ export default function FormChild({ title, fields, onSubmit }: FormChildProps) {
                         ))}
                         <Grid item xs={12} display="flex" justifyContent="center">
                             <Button variant="contained" onClick={handleSubmit}>
-                                Submit
+                                <FormattedMessage id="form_send_button" />
                             </Button>
                         </Grid>
                     </Grid>

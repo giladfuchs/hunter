@@ -25,10 +25,26 @@ export type InputField = {
     type: FormType;
     options?: string[];
 };
+
+export enum Grade {
+    A = 'A',
+    B = 'B',
+    C = 'C',
+    D = 'D',
+    E = 'E',
+    F = 'F',
+    G = 'G',
+    H = 'H',
+    I = 'I',
+    J = 'J',
+    K = 'K',
+    L = 'L'
+}
+
 export const student_fields: InputField[] = [
     { key: 'name', type: FormType.TEXT },
     { key: 'phone', type: FormType.NUMBER },
-    { key: 'grade', type: FormType.TEXT }
+    { key: 'grade', type: FormType.AutoComplete, options: Object.values(Grade) }
 ];
 export const assignment_fields: InputField[] = [
     { key: 'title', type: FormType.TEXT },

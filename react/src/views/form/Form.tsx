@@ -7,8 +7,11 @@ import React from 'react';
 import { array_obj_to_obj_with_key, create_form_fields } from '../../utils/transformation';
 import { createOrUpdateRow } from 'store/modelSlice';
 import { AppDispatch } from 'store';
+import { useIntl } from 'react-intl';
 
 const Form = () => {
+    const intl = useIntl();
+
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const { id, model } = useParams() as {
@@ -22,9 +25,10 @@ const Form = () => {
 
     const obj = is_add ? {} : array_obj_to_obj_with_key(model_objs, id, 'id') ?? {};
     const fields: FormField[] = create_form_fields(get_form_by_model(model), obj);
+    const title = intl.formatMessage({ id: `${is_add ? 'form_header_add' : 'form_header_edit'}_${model}` });
 
     const handleSubmit = async (send_fields: FormField[]) => {
-        const data = Object.fromEntries(send_fields.map((f) => [f.key, f.value]));
+        const data = Object.fromEntries(send_fields.map((f) => [f.key, f.value])) as Record<string, any>;
         if (model.includes(ModelType.student)) data.teacher_id = user_id;
         if (model.includes(ModelType.assignment)) {
             data.teacher_id = user_id;
@@ -40,7 +44,7 @@ const Form = () => {
         }
     };
 
-    return <FormChild title={is_add ? `Add ${model}` : `Edit ${model}`} fields={fields} onSubmit={handleSubmit} />;
+    return <FormChild title={title} fields={fields} onSubmit={handleSubmit} />;
 };
 
 export default Form;
