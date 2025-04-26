@@ -26,7 +26,7 @@ def create_fake_data():
         teachers.append(teacher)
 
     # Create fake students
-    for _ in range(15):  # Adjust the number as needed
+    for _ in range(25):  # Adjust the number as needed
         teacher = choice(teachers)
         student = StudentModel.table(
             name=fake.name(),
@@ -39,7 +39,7 @@ def create_fake_data():
         students.append(student)
 
     # Create fake assignments
-    for _ in range(30):  # Adjust the number as needed
+    for _ in range(150):  # Adjust the number as needed
         student = choice(students)
 
         assignment = AssignmentModel.table(

@@ -1,12 +1,31 @@
 import { ICellRendererParams } from 'ag-grid-community';
-import { Button, Popper, Paper } from '@mui/material';
+import { Button, Popper, Paper, TableBody, Typography, TableCell, TableRow } from '@mui/material';
+
 import React, { useState, useRef } from 'react';
 import { Assignment } from '../../../types';
 
 const AssignmentsHover = ({ assignments }: { assignments: Assignment[] }) => (
-    <div>{assignments?.length ? assignments.map((a, i) => <div key={i}>{a.title}</div>) : <em>No assignments</em>}</div>
+    <TableBody>
+        {assignments?.length ? (
+            assignments.map((assignment, index) => (
+                <TableRow key={index}>
+                    <TableCell sx={{ pl: 3 }}>
+                        <Typography align="left" variant="subtitle1">
+                            {assignment.title}
+                        </Typography>
+                        <Typography align="left" variant="body2">
+                            {assignment.detail}
+                        </Typography>
+                    </TableCell>
+                </TableRow>
+            ))
+        ) : (
+            <Typography variant="body2" color="text.secondary" fontStyle="italic">
+                No assignments
+            </Typography>
+        )}
+    </TableBody>
 );
-
 const AssignmentsRender = ({ value }: ICellRendererParams) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef<HTMLButtonElement>(null);
@@ -14,7 +33,7 @@ const AssignmentsRender = ({ value }: ICellRendererParams) => {
     return (
         <>
             <Button ref={anchorRef} variant="contained" size="small" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-                Hover me
+                {value?.length || 0} Assignments
             </Button>
 
             <Popper
@@ -24,11 +43,12 @@ const AssignmentsRender = ({ value }: ICellRendererParams) => {
                 onMouseEnter={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
             >
-                <Paper sx={{ padding: 1, minWidth: 200 }}>
+                <Paper sx={{ padding: 1, minWidth: 200, maxWidth: 800, boxShadow: 4 }}>
                     <AssignmentsHover assignments={value} />
                 </Paper>
             </Popper>
         </>
     );
 };
+
 export default AssignmentsRender;

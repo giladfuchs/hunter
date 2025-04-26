@@ -45,7 +45,7 @@ const StudentProfile = ({ student }: { student: Student }) => {
         }
     };
     return (
-        <Grid item lg={4} xs={12}>
+        <Grid item lg={3} xs={12}>
             <SubCard
                 title={
                     <Grid container spacing={2} alignItems="center">
@@ -117,17 +117,16 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
         }
     };
     return (
-        <>
-            <MainCard
-                title="Assignments"
-                container
-                spacing={2}
-                secondary={
-                    <IconButton size="medium" color="primary" component={Link} to={`/form/${ModelType.assignment}/add`}>
-                        <AddBoxIcon fontSize="medium" />
-                    </IconButton>
-                }
-            >
+        <MainCard
+            title="Assignments"
+            sx={{ height: '100%' }}
+            secondary={
+                <IconButton size="medium" color="primary" component={Link} to={`/form/${ModelType.assignment}/add`}>
+                    <AddBoxIcon fontSize="medium" />
+                </IconButton>
+            }
+        >
+            <Grid container spacing={2}>
                 {assignments.map((assignment: Assignment) => (
                     <Grid item xs={12} sm={6} md={4} key={assignment.id}>
                         <SubCard contentSX={{ p: 2 }}>
@@ -138,7 +137,7 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
                             <Typography variant="body2" color="textPrimary">
                                 {assignment.detail}
                             </Typography>
-                            <Grid container spacing={1} sx={{ mt: 1 }}>
+                            <Grid container spacing={2} justifyContent="center" sx={{ mt: 0.2 }}>
                                 <Grid item>
                                     <IconButton size="small" color="error" onClick={() => handleDelete(assignment.id)}>
                                         <DeleteIcon fontSize="small" />
@@ -158,8 +157,8 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
                         </SubCard>
                     </Grid>
                 ))}
-            </MainCard>
-        </>
+            </Grid>
+        </MainCard>
     );
 };
 
@@ -187,7 +186,8 @@ const StudentView = () => {
         if (student_obj) {
             setStudent(student_obj);
 
-            if (student.assignments) {
+            if (student_obj.assignments) {
+                // use student_obj.assignments not student.assignments
                 dispatch(setAssignments(student_obj.assignments));
             }
 
@@ -199,12 +199,13 @@ const StudentView = () => {
             );
         }
     }, [list, dispatch]);
+
     return (
         <MainCard>
             <Grid container spacing={3}>
                 <StudentProfile student={student} />
 
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={9}>
                     <AssignmentCard assignments={student.assignments} />
                 </Grid>
             </Grid>

@@ -41,7 +41,6 @@ const AuthWrapper1 = styled('div')(({ theme }) => ({
 const Login = () => {
     const theme = useTheme();
 
-    const { isLoggedIn } = useAuth();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
@@ -94,7 +93,7 @@ const Login = () => {
                                         <Grid item container direction="column" alignItems="center" xs={12}>
                                             <Typography
                                                 component={Link}
-                                                to={isLoggedIn ? '/pages/register/register3' : '/register'}
+                                                to={`/form/${ModelType.teacher}/add`}
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
@@ -108,7 +107,11 @@ const Login = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <MuiTable model={ModelType.teacher} />
+            <Grid container justifyContent="center">
+                <Grid item xs={12} sm={10} md={8} lg={6}>
+                    <MuiTable model={ModelType.teacher} />
+                </Grid>
+            </Grid>
         </AuthWrapper1>
     );
 };
