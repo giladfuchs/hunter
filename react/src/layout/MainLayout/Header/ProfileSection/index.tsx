@@ -1,41 +1,31 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import {
-    Avatar,
     Box,
-    Card,
-    CardContent,
     Chip,
     ClickAwayListener,
     Divider,
-    Grid,
-    InputAdornment,
     List,
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    OutlinedInput,
     Paper,
     Popper,
     Stack,
-    Switch,
     Typography
 } from '@mui/material';
+import TranslateTwoToneIcon from '@mui/icons-material/TranslateTwoTone';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
-// third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
-
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
 import useAuth from 'hooks/useAuth';
 import { DefaultRootStateProps } from 'types';
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+import { IconLogout, IconSettings } from '@tabler/icons';
 import { TOGGLE_CUSTOMIZATION_DRAWER } from '../../../../store/actions';
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -44,15 +34,13 @@ const ProfileSection = () => {
     const theme = useTheme();
     const customization = useSelector((state: DefaultRootStateProps) => state.customization);
 
-    const [selectedIndex, setSelectedIndex] = React.useState(-1);
     const { logout } = useAuth();
-    const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
+    const [open, setOpen] = React.useState(false);
+    const [openLanguage, setOpenLanguage] = React.useState(false);
 
-    /**
-     * anchorRef is used on different components and specifying one type leads to other components throwing an error
-     * */
     const anchorRef = React.useRef<any>(null);
+
     const handleLogout = async () => {
         try {
             await logout();
@@ -64,19 +52,19 @@ const ProfileSection = () => {
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-    const handleClose = (event: React.MouseEvent<HTMLDivElement> | MouseEvent | TouchEvent) => {
+
+    const handleClose = (event: MouseEvent | TouchEvent) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
+
     const prevOpen = React.useRef(open);
     React.useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }
-
         prevOpen.current = open;
     }, [open]);
 
@@ -157,10 +145,10 @@ const ProfileSection = () => {
                                                     }
                                                 }}
                                             >
+                                                {/* Theme Settings */}
                                                 <ListItemButton
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                    selected={selectedIndex === 0}
-                                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+                                                    onClick={() => {
                                                         dispatch({ type: TOGGLE_CUSTOMIZATION_DRAWER, openDrawer: true });
                                                         setOpen(false);
                                                     }}
@@ -170,9 +158,45 @@ const ProfileSection = () => {
                                                     </ListItemIcon>
                                                     <ListItemText primary={<Typography variant="body2">Theme Settings</Typography>} />
                                                 </ListItemButton>
+
+                                                {/* Language */}
                                                 <ListItemButton
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                    selected={selectedIndex === 4}
+                                                    onClick={() => setOpenLanguage(!openLanguage)}
+                                                >
+                                                    <ListItemIcon>
+                                                        <TranslateTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={<Typography variant="body2">Language</Typography>} />
+                                                    {openLanguage ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                                </ListItemButton>
+
+                                                {/* Language submenu */}
+                                                {openLanguage && (
+                                                    <List component="div" disablePadding>
+                                                        {[
+                                                            { lng: 'en', label: 'English (UK)' },
+                                                            { lng: 'fr', label: 'Français (French)' },
+                                                            { lng: 'ro', label: 'Română (Romanian)' },
+                                                            { lng: 'zh', label: '中文 (Chinese)' }
+                                                        ].map(({ lng, label }) => (
+                                                            <ListItemButton
+                                                                key={lng}
+                                                                sx={{ pl: 5 }}
+                                                                onClick={() => {
+                                                                    dispatch({ type: 'THEME_LOCALE', locale: lng });
+                                                                    setOpen(false);
+                                                                }}
+                                                            >
+                                                                <ListItemText primary={<Typography variant="body2">{label}</Typography>} />
+                                                            </ListItemButton>
+                                                        ))}
+                                                    </List>
+                                                )}
+
+                                                {/* Logout */}
+                                                <ListItemButton
+                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
                                                     onClick={handleLogout}
                                                 >
                                                     <ListItemIcon>

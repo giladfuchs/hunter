@@ -3,7 +3,6 @@ import { lazy } from 'react';
 import Loadable from 'ui-component/Loadable';
 import { Outlet } from 'react-router-dom';
 
-import NavMotion from '../layout/NavMotion';
 import GuestGuard from '../utils/route-guard/GuestGuard';
 
 const MaintenanceError = Loadable(lazy(() => import('views/pages/Error')));
@@ -14,11 +13,7 @@ const Login = Loadable(lazy(() => import('views/pages/Login')));
 
 const AuthenticationRoutes = {
     path: '/',
-    element: (
-        <NavMotion>
-            <Outlet />
-        </NavMotion>
-    ),
+    element: <Outlet />,
     children: [
         {
             path: '/login',

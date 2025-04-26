@@ -6,16 +6,11 @@ import { CssBaseline, StyledEngineProvider } from '@mui/material';
 // routing
 import Routes from 'routes';
 
-// store
 import { DefaultRootStateProps } from 'types';
 
-// defaultTheme
 import themes from 'themes';
 
-// project imports
 import Locales from 'ui-component/Locales';
-import NavigationScroll from 'layout/NavigationScroll';
-// import RTLLayout from 'ui-component/RTLLayout';
 import Snackbar from 'ui-component/extended/Snackbar';
 
 // auth provider
@@ -38,16 +33,14 @@ const App = () => {
                 {/* RTL layout */}
                 {/* <RTLLayout> */}
                 <Locales>
-                    <NavigationScroll>
-                        <AuthProvider>
-                            <AxiosInterceptor>
-                                <>
-                                    <Routes />
-                                    <Snackbar />
-                                </>
-                            </AxiosInterceptor>
-                        </AuthProvider>
-                    </NavigationScroll>
+                    <AuthProvider>
+                        <AxiosInterceptor>
+                            <>
+                                <Routes />
+                                <Snackbar />
+                            </>
+                        </AxiosInterceptor>
+                    </AuthProvider>
                 </Locales>
                 {/* </RTLLayout> */}
             </ThemeProvider>

@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom';
 
-// material-ui
 import { useTheme, styled } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery, Box } from '@mui/material';
 import MainCard, { MainCardProps } from 'ui-component/cards/MainCard';
 
-// project imports
 import AuthLogin from './AuthLogin';
 import Logo from 'ui-component/Logo';
-import useAuth from 'hooks/useAuth';
 import MuiTable from '../../ui-component/table/MuiTable';
 import { ModelType } from '../../types';
-
-// project import
-
-// ==============================|| AUTHENTICATION CARD WRAPPER ||============================== //
 
 const AuthCardWrapper = ({ children, ...other }: MainCardProps) => (
     <MainCard
