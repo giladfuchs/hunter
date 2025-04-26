@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction, ActionReducerMapBuilder } from '@reduxjs/toolkit';
-import { FilterQuery, ModelType } from '../types';
+import { Assignment, FilterQuery, ModelType } from '../types';
 import { API, fetch_or_delete_rows } from '../utils/axios';
 
 interface ModelState {
@@ -8,6 +8,8 @@ interface ModelState {
     };
     loading: boolean;
     error: string | null;
+    user_id: number;
+    student_id: number;
 }
 
 const initialState: ModelState = {
@@ -17,12 +19,20 @@ const initialState: ModelState = {
         [ModelType.assignment]: []
     },
     loading: false,
-    error: null
+    error: null,
+    user_id: 0,
+    student_id: 0
 };
 
 export const fetchListByModel = createAsyncThunk(
     'models/fetch_or_delete_rows',
-    async (params: { model: ModelType; data?: FilterQuery }, thunkAPI) => {
+    async (
+        params: {
+            model: ModelType;
+            data?: FilterQuery;
+        },
+        thunkAPI
+    ) => {
         const { model, data = {} } = params;
         const res = await fetch_or_delete_rows(model, data);
         return { model, res };
@@ -40,7 +50,21 @@ export const createOrUpdateRow = createAsyncThunk(
 const modelSlice = createSlice({
     name: 'models',
     initialState,
-    reducers: {},
+    reducers: {
+        setAssignments(state, action: PayloadAction<Assignment[]>) {
+            state.list[ModelType.assignment] = action.payload;
+        },
+        setUserAndStudentId(
+            state,
+            action: PayloadAction<{
+                user_id: number;
+                student_id: number;
+            }>
+        ) {
+            state.user_id = action.payload.user_id;
+            state.student_id = action.payload.student_id;
+        }
+    },
     extraReducers: (builder: ActionReducerMapBuilder<ModelState>) => {
         builder
             .addCase(fetchListByModel.pending, (state: ModelState) => {
@@ -66,5 +90,6 @@ const modelSlice = createSlice({
             });
     }
 });
+export const { setAssignments, setUserAndStudentId } = modelSlice.actions;
 
 export default modelSlice.reducer;

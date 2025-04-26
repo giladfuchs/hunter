@@ -30,6 +30,10 @@ export const student_fields: InputField[] = [
     { key: 'phone', type: FormType.NUMBER },
     { key: 'grade', type: FormType.TEXT }
 ];
+export const assignment_fields: InputField[] = [
+    { key: 'title', type: FormType.TEXT },
+    { key: 'detail', type: FormType.TEXTAREA }
+];
 export const json_field_to_form_field = (json_field: InputField): FormField => {
     if ([FormType.TEXT, FormType.TEXTAREA, FormType.NUMBER].includes(json_field.type)) {
         return new FieldInput(json_field.type, json_field.key);
@@ -47,6 +51,8 @@ export const get_form_by_model = (type_form: ModelType): FormField[] => {
     switch (type_form) {
         case ModelType.student:
             return json_fields_to_form_fields([...student_fields]);
+        case ModelType.assignment:
+            return json_fields_to_form_fields([...assignment_fields]);
     }
 
     return json_fields_to_form_fields([...student_fields]);

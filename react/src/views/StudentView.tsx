@@ -16,12 +16,13 @@ import {
     Typography
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import PhonelinkRingTwoToneIcon from '@mui/icons-material/PhonelinkRingTwoTone';
 
 import { Assignment, DefaultRootStateProps, ModelType, Student } from '../types';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { fetchListByModel } from '../store/modelSlice';
+import { Link, useParams } from 'react-router-dom';
+import { fetchListByModel, setAssignments, setUserAndStudentId } from '../store/modelSlice';
 
 const StudentProfile = ({ student }: { student: Student }) => (
     <Grid item lg={4} xs={12}>
@@ -34,6 +35,11 @@ const StudentProfile = ({ student }: { student: Student }) => (
                         </Typography>
                     </Grid>
                 </Grid>
+            }
+            secondary={
+                <IconButton size="small" color="secondary" component={Link} to={`/form/${ModelType.student}/${student.id}`}>
+                    <EditIcon fontSize="small" />
+                </IconButton>
             }
         >
             <List component="nav" aria-label="grade">
@@ -67,7 +73,16 @@ const StudentProfile = ({ student }: { student: Student }) => (
 
 const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => (
     <>
-        <MainCard title="Assignments" container spacing={2}>
+        <MainCard
+            title="Assignments"
+            container
+            spacing={2}
+            secondary={
+                <IconButton size="medium" color="primary" component={Link} to={`/form/${ModelType.assignment}/add`}>
+                    <AddBoxIcon fontSize="medium" />
+                </IconButton>
+            }
+        >
             {assignments.map((assignment: Assignment) => (
                 <Grid item xs={12} sm={6} md={4} key={assignment.id}>
                     <SubCard contentSX={{ p: 2 }}>
@@ -85,7 +100,12 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => (
                                 </IconButton>
                             </Grid>
                             <Grid item>
-                                <IconButton size="small" color="secondary">
+                                <IconButton
+                                    size="small"
+                                    color="secondary"
+                                    component={Link}
+                                    to={`/form/${ModelType.assignment}/${assignment.id}`}
+                                >
                                     <EditIcon fontSize="small" />
                                 </IconButton>
                             </Grid>
@@ -116,8 +136,23 @@ const StudentView = () => {
         );
     }, [dispatch, id]);
     React.useEffect(() => {
-        setStudent(list[ModelType.student][0]);
-    }, [list]);
+        const student_obj = list[ModelType.student][0];
+
+        if (student) {
+            setStudent(student_obj);
+
+            if (student.assignments) {
+                dispatch(setAssignments(student_obj.assignments));
+            }
+
+            dispatch(
+                setUserAndStudentId({
+                    user_id: student_obj.teacher_id,
+                    student_id: student_obj.id
+                })
+            );
+        }
+    }, [list, dispatch]);
     return (
         <MainCard>
             <Grid container spacing={3}>

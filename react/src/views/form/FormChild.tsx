@@ -31,7 +31,9 @@ const FieldRenderer = ({ field, onChange }: FormFieldProps) => {
                     label={field.key}
                     placeholder={field.key}
                     value={field.value}
-                    type={field.type}
+                    type={field.type === FormType.NUMBER ? 'number' : 'text'}
+                    multiline={field.type === FormType.TEXTAREA}
+                    rows={field.type === FormType.TEXTAREA ? 5 : undefined}
                     onChange={(e) => onChange(e.target.value, field.key)}
                 />
             );

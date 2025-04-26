@@ -7,6 +7,7 @@ import NavMotion from '../layout/NavMotion';
 import GuestGuard from '../utils/route-guard/GuestGuard';
 
 const MaintenanceError = Loadable(lazy(() => import('views/pages/Error')));
+const Form = Loadable(lazy(() => import('../views/form/Form')));
 const Login = Loadable(lazy(() => import('views/pages/Login')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
@@ -28,6 +29,10 @@ const AuthenticationRoutes = {
         {
             path: '/login',
             element: <Login />
+        },
+        {
+            path: '/form/:model/:id',
+            element: <Form />
         }
     ]
 };

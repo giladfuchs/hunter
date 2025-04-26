@@ -28,7 +28,7 @@ const PublicRoutes = {
     {
       name: 'add_edit',
       path: ':model/:url',
-      component: () => import('@/views/components/form/AddEditForm.vue')
+      component: () => import('@/views/components/form/Form.vue')
     }
   ]
 };

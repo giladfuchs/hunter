@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Paper } from '@mui/material';
+import { IconButton, Paper } from '@mui/material';
 
 import MainCard from 'ui-component/cards/MainCard';
 
@@ -10,7 +10,8 @@ import { DefaultRootStateProps, ModelType, Student } from '../types';
 import { ColDef } from 'ag-grid-community';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListByModel } from '../store/modelSlice';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 export default function AGTable() {
     const params = useParams();
@@ -25,7 +26,15 @@ export default function AGTable() {
         dispatch(fetchListByModel({ model }));
     }, [dispatch, model]);
     return (
-        <MainCard content={false} title={model}>
+        <MainCard
+            content={false}
+            title={model}
+            secondary={
+                <IconButton size="medium" color="primary" component={Link} to={`/form/${model}/add`}>
+                    <AddBoxIcon fontSize="medium" />
+                </IconButton>
+            }
+        >
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <AGTableChild cols={cols} rows={rows} />
             </Paper>

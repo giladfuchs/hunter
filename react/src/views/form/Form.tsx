@@ -11,12 +11,13 @@ import { AppDispatch } from 'store';
 const Form = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-
     const { id, model } = useParams() as {
         id: string;
         model: ModelType;
     };
-    const model_objs = useSelector((state: DefaultRootStateProps) => state.models.list[model]);
+    const { list, student_id, user_id } = useSelector((state: DefaultRootStateProps) => state.models);
+
+    const model_objs = list[model];
     const is_add: boolean = id === 'add';
 
     const obj = is_add ? {} : array_obj_to_obj_with_key(model_objs, id, 'id') ?? {};
@@ -24,13 +25,18 @@ const Form = () => {
 
     const handleSubmit = async (send_fields: FormField[]) => {
         const data = Object.fromEntries(send_fields.map((f) => [f.key, f.value]));
-        data.teacher_id = obj.teacher_id;
+        if (model.includes(ModelType.student)) data.teacher_id = user_id;
+        if (model.includes(ModelType.assignment)) {
+            data.teacher_id = user_id;
+            data.student_id = student_id;
+        }
         try {
             await dispatch(createOrUpdateRow({ model, data, id })).unwrap();
-            navigate(`/${model}`); // ✅ redirect to table
+            if (model === ModelType.teacher) navigate(`/login`);
+            else if (model === ModelType.student && is_add) navigate(`/${ModelType.student}`);
+            else navigate(`/view/${student_id}`);
         } catch (err) {
             console.error('Error submitting form:', err);
-            // Optional: show toast error
         }
     };
 
