@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 
-// project imports
 import Loadable from 'ui-component/Loadable';
-import MinimalLayout from 'layout/MinimalLayout';
+import { Outlet } from 'react-router-dom';
+
 import NavMotion from '../layout/NavMotion';
 import GuestGuard from '../utils/route-guard/GuestGuard';
 
@@ -16,19 +16,21 @@ const AuthenticationRoutes = {
     path: '/',
     element: (
         <NavMotion>
-            <GuestGuard>
-                <MinimalLayout />
-            </GuestGuard>
+            <Outlet />
         </NavMotion>
     ),
     children: [
         {
-            path: '/pages/error',
-            element: <MaintenanceError />
+            path: '/login',
+            element: (
+                <GuestGuard>
+                    <Login />
+                </GuestGuard>
+            )
         },
         {
-            path: '/login',
-            element: <Login />
+            path: '/error',
+            element: <MaintenanceError />
         },
         {
             path: '/form/:model/:id',

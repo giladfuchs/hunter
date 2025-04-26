@@ -48,12 +48,9 @@ export const AuthProvider = ({ children }: { children: React.ReactElement }) => 
                             isLoggedIn: true
                         }
                     });
-                } else {
-                    logout();
                 }
             } catch (err) {
                 console.error(err);
-                logout();
             }
         };
 

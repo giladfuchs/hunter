@@ -34,6 +34,10 @@ export const assignment_fields: InputField[] = [
     { key: 'title', type: FormType.TEXT },
     { key: 'detail', type: FormType.TEXTAREA }
 ];
+export const teacher_fields: InputField[] = [
+    { key: 'id', type: FormType.NUMBER },
+    { key: 'phone', type: FormType.NUMBER }
+];
 export const json_field_to_form_field = (json_field: InputField): FormField => {
     if ([FormType.TEXT, FormType.TEXTAREA, FormType.NUMBER].includes(json_field.type)) {
         return new FieldInput(json_field.type, json_field.key);
@@ -47,14 +51,15 @@ export const json_field_to_form_field = (json_field: InputField): FormField => {
 };
 export const json_fields_to_form_fields = (json_fields: InputField[]): FormField[] =>
     json_fields.map((obj: InputField) => json_field_to_form_field(obj));
+// eslint-disable-next-line consistent-return
 export const get_form_by_model = (type_form: ModelType): FormField[] => {
     switch (type_form) {
         case ModelType.student:
             return json_fields_to_form_fields([...student_fields]);
         case ModelType.assignment:
             return json_fields_to_form_fields([...assignment_fields]);
+        case ModelType.teacher:
+            return json_fields_to_form_fields([...teacher_fields]);
     }
-
-    return json_fields_to_form_fields([...student_fields]);
 };
 /* eslint-enable max-classes-per-file */

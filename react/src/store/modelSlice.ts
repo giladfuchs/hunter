@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction, ActionReducerMapBuilder }
 import { Assignment, FilterQuery, ModelType } from '../types';
 import { API, fetch_or_delete_rows } from '../utils/axios';
 
+// ==============================|| TYPES ||============================== //
+
 interface ModelState {
     list: {
         [key in ModelType]: any[];
@@ -11,6 +13,8 @@ interface ModelState {
     user_id: number;
     student_id: number;
 }
+
+// ==============================|| INITIAL STATE ||============================== //
 
 const initialState: ModelState = {
     list: {
@@ -24,21 +28,19 @@ const initialState: ModelState = {
     student_id: 0
 };
 
+// ==============================|| THUNKS ||============================== //
+
+// Fetch List (fetch_or_delete_rows from server)
 export const fetchListByModel = createAsyncThunk(
     'models/fetch_or_delete_rows',
-    async (
-        params: {
-            model: ModelType;
-            data?: FilterQuery;
-        },
-        thunkAPI
-    ) => {
+    async (params: { model: ModelType; data?: FilterQuery }) => {
         const { model, data = {} } = params;
         const res = await fetch_or_delete_rows(model, data);
         return { model, res };
     }
 );
 
+// Create or Update Row (POST)
 export const createOrUpdateRow = createAsyncThunk(
     'models/create_or_update_row',
     async ({ model, data, id }: { model: ModelType; data: Record<string, any>; id: string }) => {
@@ -46,6 +48,18 @@ export const createOrUpdateRow = createAsyncThunk(
         return response.data;
     }
 );
+
+export const deleteRowById = createAsyncThunk('models/delete_row', async ({ model, id }: { model: ModelType; id: string | number }) => {
+    const data = {
+        query: [{ key: 'id', value: id, opt: 'eq' }],
+        delete_rows: true
+    };
+
+    const res = await fetch_or_delete_rows(model, data);
+    return { model, id };
+});
+
+// ==============================|| SLICE ||============================== //
 
 const modelSlice = createSlice({
     name: 'models',
@@ -67,29 +81,47 @@ const modelSlice = createSlice({
     },
     extraReducers: (builder: ActionReducerMapBuilder<ModelState>) => {
         builder
-            .addCase(fetchListByModel.pending, (state: ModelState) => {
+            .addCase(fetchListByModel.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(
-                fetchListByModel.fulfilled,
-                (
-                    state: any,
-                    action: PayloadAction<{
-                        model: ModelType;
-                        res: any[];
-                    }>
-                ) => {
-                    state.loading = false;
-                    state.list[action.payload.model] = action.payload.res;
-                }
-            )
-            .addCase(fetchListByModel.rejected, (state: ModelState, action: any) => {
+            .addCase(fetchListByModel.fulfilled, (state, action) => {
+                state.loading = false;
+                state.list[action.payload.model] = action.payload.res;
+            })
+            .addCase(fetchListByModel.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message ?? 'Failed to fetch model data';
+            })
+
+            .addCase(createOrUpdateRow.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(createOrUpdateRow.fulfilled, (state) => {
+                state.loading = false;
+            })
+            .addCase(createOrUpdateRow.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message ?? 'Failed to create/update model data';
+            })
+
+            .addCase(deleteRowById.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(deleteRowById.fulfilled, (state) => {
+                state.loading = false;
+                // ❗ We do NOT modify the list here, because user manually navigates after delete
+            })
+            .addCase(deleteRowById.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message ?? 'Failed to delete row';
             });
     }
 });
-export const { setAssignments, setUserAndStudentId } = modelSlice.actions;
 
+// ==============================|| EXPORTS ||============================== //
+
+export const { setAssignments, setUserAndStudentId } = modelSlice.actions;
 export default modelSlice.reducer;
