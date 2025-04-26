@@ -1,5 +1,4 @@
-// action - state management
-import { LOGIN, LOGOUT, REGISTER } from './actions';
+import { LOGIN, LOGOUT } from './actions';
 import { initialLoginContextProps } from 'types';
 
 // ==============================|| ACCOUNT REDUCER ||============================== //

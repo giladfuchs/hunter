@@ -1,20 +1,22 @@
 import { createAsyncThunk, createSlice, PayloadAction, ActionReducerMapBuilder } from '@reduxjs/toolkit';
-import { Assignment, FilterQuery, ModelType } from '../types';
+import { Assignment, FilterQuery, ModelType, Student, Teacher } from '../types';
 import { API, fetch_or_delete_rows } from '../utils/axios';
 
 // ==============================|| TYPES ||============================== //
 
-interface ModelState {
-    list: {
-        [key in ModelType]: any[];
-    };
+export interface ModelList {
+    teacher: Teacher[];
+    student: Student[];
+    assignment: Assignment[];
+}
+
+export interface ModelState {
+    list: ModelList;
     loading: boolean;
     error: string | null;
     user_id: number;
     student_id: number;
 }
-
-// ==============================|| INITIAL STATE ||============================== //
 
 const initialState: ModelState = {
     list: {
@@ -28,9 +30,6 @@ const initialState: ModelState = {
     student_id: 0
 };
 
-// ==============================|| THUNKS ||============================== //
-
-// Fetch List (fetch_or_delete_rows from server)
 export const fetchListByModel = createAsyncThunk(
     'models/fetch_or_delete_rows',
     async (params: { model: ModelType; data?: FilterQuery }) => {

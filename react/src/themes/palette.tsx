@@ -1,7 +1,3 @@
-/**
- * Color intention that you want to used in your theme
- * @param {JsonObject} theme Theme customization object
- */
 import { CustomTypography } from 'themes/types';
 
 export default function themePalette(theme: CustomTypography) {

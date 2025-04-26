@@ -28,13 +28,6 @@ const customizationReducer = (state = initialState, action: CustomizationStatePr
                 ...state,
                 openDrawer: action.openDrawer
             };
-        case actionTypes.MENU_OPEN:
-            id = action.id;
-            return {
-                ...state,
-                isOpen: [id]
-            };
-
         case actionTypes.MENU_TYPE:
             return {
                 ...state,
@@ -65,16 +58,7 @@ const customizationReducer = (state = initialState, action: CustomizationStatePr
                 ...state,
                 fontFamily: action.fontFamily
             };
-        case actionTypes.SET_BORDER_RADIUS:
-            return {
-                ...state,
-                borderRadius: action.borderRadius
-            };
-        case actionTypes.SET_OUTLINED_FILLED:
-            return {
-                ...state,
-                outlinedFilled: action.outlinedFilled
-            };
+
         default:
             return state;
     }

@@ -19,11 +19,10 @@ export enum Grade {
     L = 'L'
 }
 
-export enum InputType {
-    Text = 'text',
-    Number = 'number',
-    TextArea = 'textarea'
-}
+export type Teacher = {
+    id: number;
+    phone: number;
+};
 
 export type Assignment = {
     id: number;
@@ -38,6 +37,7 @@ export type Student = {
     phone: number;
     assignments: Assignment[];
 };
+
 export interface DBQuery {
     opt: string;
     key: string;

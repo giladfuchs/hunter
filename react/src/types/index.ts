@@ -5,6 +5,7 @@ import { Property } from 'csstype';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 import { TablerIcon } from '@tabler/icons';
+import { ModelState } from '../store/modelSlice';
 
 export * from './general';
 export * from './table';
@@ -83,7 +84,7 @@ export interface SnackbarStateProps {
 export interface DefaultRootStateProps {
     customization: CustomizationStateProps;
     snackbar: SnackbarStateProps;
-    models: any;
+    models: ModelState;
 }
 
 export interface ColorProps {

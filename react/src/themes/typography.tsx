@@ -1,7 +1,3 @@
-/**
- * Typography used in theme
- * @param {JsonObject} theme theme customization object
- */
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 import { CustomTypography } from 'themes/types';
 

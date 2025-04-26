@@ -1,49 +1,23 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import { styled, useTheme, Theme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
 
-// project imports
 import Header from './Header';
 import Customization from '../Customization';
 import { drawerWidth } from 'store/constant';
 import { SET_MENU } from 'store/actions';
-import { DefaultRootStateProps } from 'types';
 
 interface MainStyleProps {
     theme: Theme;
-    open: boolean;
 }
 
-// styles
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }: MainStyleProps) => ({
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme }: MainStyleProps) => ({
     ...theme.typography.mainContent,
-    ...(!open && {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        }),
-        [theme.breakpoints.up('md')]: {
-            marginLeft: -(drawerWidth - 20),
-            width: `calc(100% - ${drawerWidth}px)`
-        },
-        [theme.breakpoints.down('md')]: {
-            marginLeft: '20px',
-            width: `calc(100% - ${drawerWidth}px)`,
-            padding: '16px'
-        },
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: '10px',
-            width: `calc(100% - ${drawerWidth}px)`,
-            padding: '16px',
-            marginRight: '10px'
-        }
-    }),
-    ...(open && {
+
+    ...{
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen
@@ -58,7 +32,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
         [theme.breakpoints.down('sm')]: {
             marginLeft: '10px'
         }
-    })
+    }
 }));
 
 // ==============================|| MAIN LAYOUT ||============================== //
@@ -68,7 +42,6 @@ const MainLayout = () => {
     const matchDownMd = useMediaQuery(theme.breakpoints.down('lg'));
 
     // Handle left drawer
-    const leftDrawerOpened = useSelector((state: DefaultRootStateProps) => state.customization.opened);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -87,7 +60,7 @@ const MainLayout = () => {
                 elevation={0}
                 sx={{
                     bgcolor: theme.palette.background.default,
-                    transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+                    transition: theme.transitions.create('width')
                 }}
             >
                 <Toolbar>
@@ -95,8 +68,7 @@ const MainLayout = () => {
                 </Toolbar>
             </AppBar>
 
-            <Main theme={theme} open={leftDrawerOpened}>
-                {/* breadcrumb */}
+            <Main theme={theme}>
                 <Outlet />
             </Main>
             <Customization />

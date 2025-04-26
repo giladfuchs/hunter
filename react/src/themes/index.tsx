@@ -1,6 +1,5 @@
 import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
 
-// assets
 import colors from 'assets/scss/_themes-vars.module.scss';
 import theme1 from 'assets/scss/_theme1.module.scss';
 import theme2 from 'assets/scss/_theme2.module.scss';
@@ -9,17 +8,11 @@ import theme4 from 'assets/scss/_theme4.module.scss';
 import theme5 from 'assets/scss/_theme5.module.scss';
 import theme6 from 'assets/scss/_theme6.module.scss';
 
-// project imports
 import componentStyleOverrides from './compStyleOverride';
 import themePalette from './palette';
 import themeTypography from './typography';
 import customShadows from './shadows';
 import { ColorProps, CustomizationStateProps } from 'types';
-
-/**
- * Represent theme style and structure as per Material-UI
- * @param {JsonObject} customization customization parameter object
- */
 
 export const theme = (customization: CustomizationStateProps) => {
     let color: ColorProps;
