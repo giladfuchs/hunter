@@ -1,0 +1,13 @@
+.v-text-field input {
+  font-size: 0.875rem;
+  // font-weight: 500;
+}
+
+.v-field__outline {
+  color: rgb(var(--v-theme-inputBorder));
+}
+.inputWithbg {
+  .v-field--variant-outlined {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+}

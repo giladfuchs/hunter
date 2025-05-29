@@ -1,0 +1,15 @@
+pydantic==1.8.2
+fastapi==0.70.0
+fastapi-crudrouter==0.8.5
+uvicorn~=0.34.0
+starlette==0.16.0
+
+sqlmodel==0.0.8
+pymysql==1.0.2
+sqlalchemy~=1.4.41
+psycopg2-binary>=2.9.9
+cryptography==37.0.2
+python-jose==3.3.0
+
+
+Faker~=37.1.0
