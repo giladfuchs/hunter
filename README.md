@@ -3,7 +3,7 @@
 This is a full stack web application template built with:
 
 - **FastAPI** (Python) backend
-- **Vue 3** and **React** frontends — both written in **TypeScript**, using the **same UI logic** but implemented as **standalone apps**
+- **Vue 3** and **React** frontends — both written in **TypeScript**, with similar structure and design but implemented as **standalone apps**
 - **PostgreSQL** database
 - **Docker Compose** for full environment orchestration
 
