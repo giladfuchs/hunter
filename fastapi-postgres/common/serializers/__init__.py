@@ -1,17 +1,10 @@
-from enum import Enum
 from typing import Any, List, Optional
 
 from pydantic import BaseModel
 from pydantic import Field as PydanticField
 from sqlmodel import Field, SQLModel
 
-from common.enums import EnumBase
 
-
-def parse_value_to_json(value):
-    if isinstance(value, EnumBase) or isinstance(value, Enum):
-        return value.value
-    return value
 
 
 class BaseModelUtil(BaseModel):

@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class Settings(BaseSettings):
-    SERVER_NAME: str = "Hunter"
+    SERVER_NAME: str = "FULL STACK TEMPLATE"
     JWT_ALGORITHM: str = "HS256"
     JWT_SECRET: str = "JWT_ALGORITHM-SECRET"
     JWT_EXP: int = 3600

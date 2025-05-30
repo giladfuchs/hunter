@@ -1,20 +1,10 @@
 @use 'variables' as *;
-@use 'override' as *;
 @import 'vuetify/styles/main.sass';
 @import 'layout/container';
-@import 'layout/sidebar';
 @import 'layout/topbar';
-@import 'layout/horizontal';
-@import 'layout/dark';
 
-@import 'components/VAlert';
 @import 'components/VButtons';
 @import 'components/VCard';
-@import 'components/VCarousel';
-@import 'components/VField';
-@import 'components/VInput';
-@import 'components/VNavigationDrawer';
-@import 'components/VShadow';
 @import 'components/VTextField';
 @import 'components/VTextarea';
 
