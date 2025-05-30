@@ -33,7 +33,7 @@ export const useGeneralStore = defineStore({
     },
     actions: {
 
-        async fetch_rows(model: ModelType, data: FilterQuery | {} = {}) {
+        async fetch_rows(model: ModelType, data: FilterQuery = {}) {
             try {
                 const response = await axios.post(`${model}`, Object.keys(data).length === 0 ? undefined : data);
                 this.list[model] = response.data;

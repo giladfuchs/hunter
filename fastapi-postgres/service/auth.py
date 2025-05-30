@@ -46,7 +46,7 @@ class AuthService:
         )
 
         teacher: TeacherModel.table = TeacherModel.fetch_rows(
-            filter_query=filter_query, limit=1, to_dict=False
+            filter_query=filter_query, limit=1
         )
 
         if not teacher:

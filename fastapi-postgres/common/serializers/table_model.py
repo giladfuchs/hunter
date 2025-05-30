@@ -20,7 +20,7 @@ class Teacher(IdBaseTable, table=True):
 
 class Student(IdBaseTable, table=True):
     __table_args__ = (UniqueConstraint("name", "phone", name="name_phone"),)
-    teacher_id: int = Field(foreign_key="teacher.id")  # Define the foreign key
+    teacher_id: int = Field(foreign_key="teacher.id")
     teacher: Teacher = Relationship(back_populates="students")
 
     name: str

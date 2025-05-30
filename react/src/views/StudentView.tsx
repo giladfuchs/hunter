@@ -168,7 +168,8 @@ const StudentView = () => {
     useEffect(() => {
         const fetchStudent = async () => {
             const response = await API.post(`/${ModelType.student}`, {
-                query: [{ key: 'id', value: id, opt: 'eq' }]
+                query: [{ key: 'id', value: id, opt: 'eq' }],
+                relation_model: true
             });
             const student_obj = response.data?.[0];
             if (student_obj) {

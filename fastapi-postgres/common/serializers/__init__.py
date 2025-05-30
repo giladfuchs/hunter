@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Any, List, Optional
 
 from pydantic import BaseModel
+from pydantic import Field as PydanticField
 from sqlmodel import Field, SQLModel
 
 from common.enums import EnumBase
@@ -32,7 +33,7 @@ class BaseTable(SQLModel):
                     continue
                 value = getattr(self, attr)
                 if isinstance(value, list) and all(
-                    isinstance(i, BaseTable) for i in value
+                        isinstance(i, BaseTable) for i in value
                 ):
                     base[attr] = [i.dict() for i in value]
                 elif isinstance(value, BaseTable):
@@ -61,8 +62,13 @@ class DBQuery(BaseModelUtil):
 
 class FilterQuery(BaseModelUtil):
     query: List[DBQuery] = []
-    relation_model: bool = True
-    delete_rows: bool = False
+    relation_model: bool = False
+    sort: Optional[str] = None
+
+
+class Pagination(BaseModel):
+    limit: int = PydanticField(0, ge=0)
+    offset: int = PydanticField(0, ge=0)
 
 
 class Token(BaseModel):

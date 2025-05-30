@@ -1,10 +1,9 @@
-from typing import List
-
 from common.db_model import DBModel
-from common.serializers import FilterQuery, table_model
+from common.db_model.endpoints import DBModelEndpoints
+from common.serializers import table_model
 
 
-class TeacherModel(DBModel):
+class TeacherModel(DBModelEndpoints):
     table = table_model.Teacher
 
 

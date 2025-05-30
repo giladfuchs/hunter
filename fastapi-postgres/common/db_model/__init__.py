@@ -1,9 +1,6 @@
-from datetime import datetime
 from typing import Any, List, Union
-
-from fastapi_crudrouter.core.databases import CALLABLE_LIST
 from sqlalchemy.orm import selectinload
-from sqlmodel import Session, create_engine, delete, select
+from sqlmodel import Session, create_engine, select
 
 from common.config import conf
 from common.serializers import BaseTable, DBQuery, FilterQuery
@@ -12,35 +9,21 @@ from common.utils.parse_obj import set_elements_by_dict
 
 opts = {
     "eq": "__eq__",
+    "ne": "__ne__",
+    "lt": "__lt__",
+    "le": "__le__",
+    "gt": "__gt__",
+    "ge": "__ge__",
+    "like": "like",
+    "ilike": "ilike",  # PostgreSQL only
+    "in": "in_",
+    "not_in": "notin_",
+    "is_null": "is_",
 }
-
 
 class DBModel:
     table = None
     engine = create_engine(conf.POSTGRES_DATABASE_URL, echo=False)
-
-    @classmethod
-    def _fetch_rows_callable(cls, *args: Any, **kwargs: Any) -> CALLABLE_LIST:
-        def route(
-            filter_query: FilterQuery = None,
-            to_dict: bool = False,
-            offset: int = 0,
-            limit: int = 1000,
-        ) -> List:
-            if filter_query is None:
-                filter_query = FilterQuery()
-
-            res = cls.fetch_rows(
-                filter_query=filter_query,
-                to_dict=to_dict,
-                limit=limit,
-                offset=offset,
-                **kwargs
-            )
-
-            return res
-
-        return route
 
     @classmethod
     def add_update(cls, row: Union[BaseTable, List[BaseTable]]):
@@ -61,7 +44,7 @@ class DBModel:
 
     @classmethod
     def add_or_find_update(
-        cls, add_or_id: str, body: BaseTable, **kwargs: Any
+            cls, add_or_id: str, body: BaseTable, **kwargs: Any
     ) -> BaseTable:
 
         db_obj: BaseTable = body
@@ -80,17 +63,6 @@ class DBModel:
         cls.add_update(row=db_obj)
         return db_obj
 
-    @classmethod
-    def _add_or_find_update_callable(cls, *args: Any, **kwargs: Any) -> CALLABLE_LIST:
-
-        def route(
-            add_or_id: str,
-            body: Union[None, cls.table],
-        ) -> BaseTable:
-            return cls.add_or_find_update(add_or_id=add_or_id, body=body)
-
-        return route
-
     # Generate SQLAlchemy filter conditions with AND logic from a list of DBQuery objects
     @classmethod
     def generate_where_query(cls, query: List[DBQuery]):
@@ -98,20 +70,16 @@ class DBModel:
         ans = tuple(
             getattr(getattr(cls.table, q.key), opts.get(q.opt, q.opt))(q.value)
             for q in query
-            if hasattr(cls.table, q.key)  # field exists on the model
+            if hasattr(cls.table, q.key)
             and hasattr(
                 getattr(cls.table, q.key), opts.get(q.opt, q.opt)
-            )  # operator is valid
+            )
         )
         return ans
 
     @classmethod
     def build_query(cls, filter_query: FilterQuery, offset: int = 0, limit: int = 1000):
-        statement = (
-            delete(cls.table)
-            if filter_query.delete_rows and not filter_query.relation_model
-            else select(cls.table)
-        )
+        statement = select(cls.table)
 
         if filter_query.query:
             statement = statement.where(*cls.generate_where_query(filter_query.query))
@@ -119,22 +87,32 @@ class DBModel:
         if filter_query.relation_model:
             statement = statement.options(selectinload("*"))
 
+        if filter_query.sort:
+            try:
+                field, direction = filter_query.sort.split(":")
+                col = getattr(cls.table, field, None)
+                if col:
+                    direction = direction.lower()
+                    statement = statement.order_by(col.asc() if direction == "asc" else col.desc())
+            except Exception:
+                raise ValueError(f"Invalid sort format: '{filter_query.sort}'. Expected 'field:asc' or 'field:desc'")
+
         if offset:
             statement = statement.offset(offset)
 
-        if limit and not filter_query.delete_rows:
+        if limit:
             statement = statement.limit(limit)
 
         return statement
 
     @classmethod
     def fetch_rows(
-        cls,
-        filter_query: FilterQuery = FilterQuery(),
-        to_dict: bool = True,
-        offset: int = 0,
-        limit: int = 1000,
-        **kwargs
+            cls,
+            filter_query: FilterQuery = FilterQuery(),
+            offset: int = 0,
+            limit: int = 1000,
+            to_dict: bool = False,
+            **kwargs
     ) -> Union["cls.table", List["cls.table"], dict, List[dict]]:
 
         statement = cls.build_query(filter_query, offset, limit)
@@ -161,18 +139,17 @@ class DBModel:
 
     @classmethod
     def delete_rows(
-        cls, filter_query: FilterQuery = FilterQuery(), offset: int = 0, **kwargs
+            cls, filter_query: FilterQuery = FilterQuery(), offset: int = 0, **kwargs
     ):
-        statement = cls.build_query(filter_query, offset, limit=0)
-
         try:
             with Session(cls.engine) as session:
-                results = session.exec(statement)
-                if filter_query.relation_model:
-                    session.delete(results.first())
-                else:
-                    session.exec(statement)
+                select_stmt = cls.build_query(filter_query, offset, limit=0)
+                results = session.exec(select_stmt).all()
+                for obj in results:
+                    session.delete(obj)
+
                 session.commit()
+
         except Exception as ex:
             ErrorService.error_400(details=ex)
 
@@ -181,6 +158,4 @@ class DBModel:
         filter_query = FilterQuery(
             query=[DBQuery(key="id", opt="eq", value=_id)], relation_model=False
         )
-        return cls.fetch_rows(
-            filter_query=filter_query, limit=1, to_dict=False, **kwargs
-        )
+        return cls.fetch_rows(filter_query=filter_query, limit=1, **kwargs)

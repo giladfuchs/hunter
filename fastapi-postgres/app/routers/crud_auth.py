@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from starlette.responses import JSONResponse
 
 from common.db_model import DBModel
-from common.serializers import FilterQuery
+from common.serializers import FilterQuery, Pagination
 from service.auth import jwt_required, user_filtered_query
 
 
@@ -13,9 +13,12 @@ def generate_crud_auth_routes(model: Type[DBModel], prefix: str):
 
     @router.post("", response_model=List[model.table])
     async def fetch_rows(
+        pagination: Pagination = Depends(),
         filter_query: FilterQuery = user_filtered_query(),
     ) -> Union[List[model.table], JSONResponse]:
-        rows = model.fetch_rows(filter_query=filter_query, to_dict=False)
+        rows = model.fetch_rows(
+            filter_query=filter_query, limit=pagination.limit, offset=pagination.offset
+        )
         if filter_query.relation_model:
             return JSONResponse(content=rows)
         else:

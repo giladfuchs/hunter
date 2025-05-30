@@ -24,7 +24,7 @@ export default function AGTable() {
     const rows: AGTableModelType[] = useSelector((state: DefaultRootStateProps) => state.models.list[model] as AGTableModelType[]);
     const cols: ColDef<AGTableModelType>[] = useMemo(() => get_columns_ag_by_model(model), [model]);
     React.useEffect(() => {
-        dispatch(fetchRowsByModel({ model }));
+        dispatch(fetchRowsByModel({ model, data: { relation_model: true } }));
     }, [dispatch, model]);
     return (
         <MainCard

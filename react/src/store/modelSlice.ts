@@ -30,7 +30,7 @@ const initialState: ModelState = {
 
 export const fetchRowsByModel = createAsyncThunk('models/fetch_rows', async (params: { model: ModelType; data?: FilterQuery }) => {
     const { model, data = {} } = params;
-    const response = await API.post(`/${model}`, Object.keys(data).length === 0 ? undefined : data);
+    const response = await API.post(`/${model}`, data);
     return { model, data: response.data };
 });
 

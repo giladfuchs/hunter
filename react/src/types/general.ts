@@ -46,7 +46,6 @@ export interface DBQuery {
 }
 
 export interface FilterQuery {
-    query: DBQuery[];
+    query?: DBQuery[];
     relation_model?: boolean;
-    delete_rows?: boolean;
 }
