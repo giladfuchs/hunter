@@ -16,11 +16,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   backend:
-    image: backend:latest
     container_name: fastapi-backend
-    build: ../fastapi-postgres
+    build:
+      context: ../fastapi-postgres
+      dockerfile: ../docker/Dockerfile_Fastapi
     restart: always
-    command: bash ./start_server.sh
+    command: bash docker/start_server.sh
     depends_on:
       - db
     environment:
@@ -29,15 +30,19 @@ services:
       - "5001:80"
 
   vue-frontend:
-    build: ../vue3
     container_name: vue3-frontend
+    build:
+      context: ../vue3
+      dockerfile: ../docker/Dockerfile_Vue
     restart: always
     ports:
       - "3030:80"
 
   react-frontend:
-    build: ../react
     container_name: react-frontend
+    build:
+      context: ../react
+      dockerfile: ../docker/Dockerfile_React
     restart: always
     ports:
       - "3040:80"
