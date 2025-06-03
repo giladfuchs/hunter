@@ -24,9 +24,7 @@ const App = () => {
                 <Locales>
                     <AuthProvider>
                         <AxiosInterceptor>
-                            <>
-                                <Routes />
-                            </>
+                            <Routes />
                         </AxiosInterceptor>
                     </AuthProvider>
                 </Locales>

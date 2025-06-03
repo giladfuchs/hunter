@@ -98,7 +98,12 @@ export type KeyedObject = {
     [key: string]: string | number | KeyedObject | any;
 };
 
-export interface initialLoginContextProps {
+export interface initialAuthContextProps {
     isLoggedIn: boolean;
     isInitialized: boolean;
+}
+
+export interface authReducerActionProps {
+    type: string;
+    payload?: { isLoggedIn: boolean };
 }

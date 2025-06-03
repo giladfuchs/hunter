@@ -10,8 +10,6 @@ export interface ModelList {
 
 export interface ModelState {
     list: ModelList;
-    loading: boolean;
-    error: string | null;
     user_id: number;
     student_id: number;
 }
@@ -22,8 +20,6 @@ const initialState: ModelState = {
         [ModelType.student]: [],
         [ModelType.assignment]: []
     },
-    loading: false,
-    error: null,
     user_id: 0,
     student_id: 0
 };
@@ -67,43 +63,9 @@ const modelSlice = createSlice({
         }
     },
     extraReducers: (builder: ActionReducerMapBuilder<ModelState>) => {
-        builder
-            .addCase(fetchRowsByModel.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(fetchRowsByModel.fulfilled, (state, action) => {
-                state.loading = false;
-                state.list[action.payload.model] = action.payload.data;
-            })
-            .addCase(fetchRowsByModel.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message ?? 'Failed to fetch model data';
-            })
-
-            .addCase(createOrUpdateRow.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(createOrUpdateRow.fulfilled, (state) => {
-                state.loading = false;
-            })
-            .addCase(createOrUpdateRow.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message ?? 'Failed to create/update model data';
-            })
-
-            .addCase(deleteRowById.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(deleteRowById.fulfilled, (state) => {
-                state.loading = false;
-            })
-            .addCase(deleteRowById.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message ?? 'Failed to delete row';
-            });
+        builder.addCase(fetchRowsByModel.fulfilled, (state, action) => {
+            state.list[action.payload.model] = action.payload.data;
+        });
     }
 });
 

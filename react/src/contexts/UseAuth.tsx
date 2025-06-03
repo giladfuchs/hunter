@@ -1,21 +1,42 @@
 import { ReactElement, createContext, useCallback, useEffect, useReducer, useContext } from 'react';
-import { LOGIN, LOGOUT } from 'store/actions';
-import accountReducer from 'store/accountReducer';
-import { initialLoginContextProps } from 'types';
-import { AuthContextType } from 'types/auth';
 import { useNavigate } from 'react-router-dom';
 import API from '../utils/axios';
+import { LOGIN, LOGOUT } from 'store/actions';
+import { authReducerActionProps, initialAuthContextProps } from 'types';
+import { AuthContextType } from 'types/auth';
 
-const initialState: initialLoginContextProps = {
+const initialState: initialAuthContextProps = {
     isLoggedIn: false,
     isInitialized: false
+};
+
+const authReducer = (state = initialState, action: authReducerActionProps) => {
+    switch (action.type) {
+        case LOGIN: {
+            return {
+                ...state,
+                isLoggedIn: action.payload!.isLoggedIn,
+                isInitialized: true
+            };
+        }
+        case LOGOUT: {
+            return {
+                ...state,
+                isLoggedIn: false,
+                isInitialized: true
+            };
+        }
+        default: {
+            return { ...state };
+        }
+    }
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactElement }) => {
     const navigate = useNavigate();
-    const [state, dispatch] = useReducer(accountReducer, initialState);
+    const [state, dispatch] = useReducer(authReducer, initialState);
     const login = async (id: string, phone: string) => {
         const response = await API.post(`auth/login`, { id, phone });
         const { access_token } = response.data;
@@ -24,8 +45,7 @@ export const AuthProvider = ({ children }: { children: ReactElement }) => {
         dispatch({
             type: LOGIN,
             payload: {
-                isLoggedIn: true,
-                isInitialized: true
+                isLoggedIn: true
             }
         });
     };
@@ -37,25 +57,14 @@ export const AuthProvider = ({ children }: { children: ReactElement }) => {
     }, [dispatch, navigate]);
 
     useEffect(() => {
-        const init = () => {
-            try {
-                const token = window.localStorage.getItem('token');
-                if (token?.length) {
-                    dispatch({
-                        type: LOGIN,
-                        payload: {
-                            isLoggedIn: true,
-                            isInitialized: true
-                        }
-                    });
-                }
-            } catch (err) {
-                console.error(err);
+        const token = localStorage.getItem('token');
+        dispatch({
+            type: LOGIN,
+            payload: {
+                isLoggedIn: Boolean(token)
             }
-        };
-
-        init();
-    }, [logout]);
+        });
+    }, []);
 
     return <AuthContext.Provider value={{ ...state, login, logout }}>{children}</AuthContext.Provider>;
 };
