@@ -10,7 +10,7 @@ import { AGTableModelType, get_columns_ag_by_model } from '../../../types/table'
 import { DefaultRootStateProps, ModelType } from '../../../types';
 import { ColDef } from 'ag-grid-community';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRowsByModel } from '../../../store/modelSlice';
+import { fetchRowsByModel } from '../../../store/generalSlice';
 import { Link, useParams } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { useMemo } from 'react';
@@ -21,7 +21,7 @@ export default function AGTable() {
         model: ModelType;
     };
     const dispatch = useDispatch();
-    const rows: AGTableModelType[] = useSelector((state: DefaultRootStateProps) => state.models.list[model] as AGTableModelType[]);
+    const rows: AGTableModelType[] = useSelector((state: DefaultRootStateProps) => state.general.models[model] as AGTableModelType[]);
     const cols: ColDef<AGTableModelType>[] = useMemo(() => get_columns_ag_by_model(model), [model]);
     React.useEffect(() => {
         dispatch(fetchRowsByModel({ model, data: { relation_model: true } }));

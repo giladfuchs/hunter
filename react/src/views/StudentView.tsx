@@ -22,7 +22,7 @@ import PhonelinkRingTwoToneIcon from '@mui/icons-material/PhonelinkRingTwoTone';
 import { Assignment, DefaultRootStateProps, ModelType, Student } from '../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { deleteRowById, setAssignments, setUserAndStudentId } from '../store/modelSlice';
+import { deleteRowById, setAssignments, setUserAndStudentId } from '../store/generalSlice';
 import { AppDispatch } from 'store';
 import { FormattedMessage } from 'react-intl';
 import API from '../utils/axios';
@@ -163,7 +163,7 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
 const StudentView = () => {
     const dispatch = useDispatch();
     const { id } = useParams() as { id: string };
-    const students = useSelector((state: DefaultRootStateProps) => state.models.list[ModelType.student]);
+    const students = useSelector((state: DefaultRootStateProps) => state.general.models[ModelType.student]);
     const [student, setStudent] = useState<Student | null>(array_obj_to_obj_with_key(students ?? [], Number(id), 'id') ?? null);
     useEffect(() => {
         const fetchStudent = async () => {

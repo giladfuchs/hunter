@@ -9,19 +9,21 @@ export interface ModelList {
 }
 
 export interface ModelState {
-    list: ModelList;
+    models: ModelList;
     user_id: number;
     student_id: number;
+    loading: boolean;
 }
 
 const initialState: ModelState = {
-    list: {
+    models: {
         [ModelType.teacher]: [],
         [ModelType.student]: [],
         [ModelType.assignment]: []
     },
     user_id: 0,
-    student_id: 0
+    student_id: 0,
+    loading: false
 };
 
 export const fetchRowsByModel = createAsyncThunk('models/fetch_rows', async (params: { model: ModelType; data?: FilterQuery }) => {
@@ -44,12 +46,15 @@ export const deleteRowById = createAsyncThunk('models/delete_row', async ({ mode
     return { model, id };
 });
 
-const modelSlice = createSlice({
+const generalSlice = createSlice({
     name: 'models',
     initialState,
     reducers: {
+        setLoading(state, action: PayloadAction<boolean>) {
+            state.loading = action.payload;
+        },
         setAssignments(state, action: PayloadAction<Assignment[]>) {
-            state.list[ModelType.assignment] = action.payload;
+            state.models[ModelType.assignment] = action.payload;
         },
         setUserAndStudentId(
             state,
@@ -64,10 +69,10 @@ const modelSlice = createSlice({
     },
     extraReducers: (builder: ActionReducerMapBuilder<ModelState>) => {
         builder.addCase(fetchRowsByModel.fulfilled, (state, action) => {
-            state.list[action.payload.model] = action.payload.data;
+            state.models[action.payload.model] = action.payload.data;
         });
     }
 });
 
-export const { setAssignments, setUserAndStudentId } = modelSlice.actions;
-export default modelSlice.reducer;
+export const { setAssignments, setUserAndStudentId, setLoading } = generalSlice.actions;
+export default generalSlice.reducer;

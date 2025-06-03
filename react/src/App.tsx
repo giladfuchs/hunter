@@ -9,6 +9,7 @@ import themes from 'themes';
 import Locales from 'ui-component/layout/Locales';
 import { AuthProvider } from 'contexts/UseAuth';
 import AxiosInterceptor from './contexts/AxiosInterceptor';
+import Loader from './ui-component/layout/Loader';
 
 declare module '@mui/styles/defaultTheme' {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -17,6 +18,7 @@ declare module '@mui/styles/defaultTheme' {
 
 const App = () => {
     const customization = useSelector((state: DefaultRootStateProps) => state.customization);
+    const { loading } = useSelector((state: DefaultRootStateProps) => state.general);
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={themes(customization)}>
@@ -24,6 +26,7 @@ const App = () => {
                 <Locales>
                     <AuthProvider>
                         <AxiosInterceptor>
+                            {loading && <Loader />}
                             <Routes />
                         </AxiosInterceptor>
                     </AuthProvider>

@@ -1,31 +1,49 @@
+import { useDispatch } from 'react-redux';
 import { useEffect, useContext, ReactNode } from 'react';
-import AuthContext from './UseAuth';
 import API from '../utils/axios';
-import { AxiosError, AxiosResponse } from 'axios';
+import { setLoading } from 'store/generalSlice';
+import AuthContext from './UseAuth';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 interface AxiosInterceptorProps {
     children: ReactNode;
 }
 
 const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
+    const dispatch = useDispatch();
     const authContext = useContext(AuthContext);
 
     useEffect(() => {
-        const responseInterceptor = API.interceptors.response.use(
-            (response: AxiosResponse) => response,
+        const requestInterceptor = API.interceptors.request.use(
+            (config: AxiosRequestConfig) => {
+                dispatch(setLoading(true));
+                return config;
+            },
             (error: AxiosError) => {
+                dispatch(setLoading(false));
+                return Promise.reject(error);
+            }
+        );
+
+        const responseInterceptor = API.interceptors.response.use(
+            (response: AxiosResponse) => {
+                dispatch(setLoading(false));
+                return response;
+            },
+            (error: AxiosError) => {
+                dispatch(setLoading(false));
                 if (error.response?.status === 401) {
                     authContext!.logout();
                 }
-
                 return Promise.reject(error);
             }
         );
 
         return () => {
+            API.interceptors.request.eject(requestInterceptor);
             API.interceptors.response.eject(responseInterceptor);
         };
-    }, [authContext]);
+    }, [dispatch, authContext]);
 
     return <>{children}</>;
 };
