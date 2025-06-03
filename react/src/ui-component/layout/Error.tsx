@@ -57,8 +57,6 @@ const CardMediaPurple = styled('img')({
     animation: '12s wings ease-in-out infinite'
 });
 
-// ==============================|| ERROR PAGE ||============================== //
-
 const Error = () => {
     const theme = useTheme();
 

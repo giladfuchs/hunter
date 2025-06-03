@@ -16,8 +16,6 @@ export interface SubCardProps {
     title?: ReactNode | string | {};
 }
 
-// ==============================|| CUSTOM SUB CARD ||============================== //
-
 const SubCard = React.forwardRef(
     (
         { children, className, content, contentClass, darkTitle, secondary, sx = {}, contentSX = {}, title, ...others }: SubCardProps,
