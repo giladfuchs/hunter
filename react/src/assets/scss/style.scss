@@ -60,23 +60,12 @@
     }
 }
 
-// ==============================|| ANIMATION KEYFRAMES ||============================== //
-
 @keyframes wings {
     50% {
         transform: translateY(-40px);
     }
     100% {
         transform: translateY(0px);
-    }
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
     }
 }
 
@@ -103,33 +92,5 @@
     }
     90% {
         transform: translate3d(0, -2px, 0);
-    }
-}
-
-@keyframes slideY {
-    0%,
-    50%,
-    100% {
-        transform: translateY(0px);
-    }
-    25% {
-        transform: translateY(-10px);
-    }
-    75% {
-        transform: translateY(10px);
-    }
-}
-
-@keyframes slideX {
-    0%,
-    50%,
-    100% {
-        transform: translateX(0px);
-    }
-    25% {
-        transform: translateX(-10px);
-    }
-    75% {
-        transform: translateX(10px);
     }
 }
