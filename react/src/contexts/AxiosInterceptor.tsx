@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, useContext, ReactNode } from 'react';
+import { toast } from 'sonner';
 import API from '../utils/axios';
 import { setLoading } from 'store/generalSlice';
 import AuthContext from './UseAuth';
@@ -20,6 +21,7 @@ const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
                 return config;
             },
             (error: AxiosError) => {
+                toast.error(error.response?.data?.message || error.message || 'Something went wrong');
                 dispatch(setLoading(false));
                 return Promise.reject(error);
             }
@@ -32,6 +34,7 @@ const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
             },
             (error: AxiosError) => {
                 dispatch(setLoading(false));
+                toast.error(error.response?.data?.message || error.message || 'Something went wrong');
                 if (error.response?.status === 401) {
                     authContext!.logout();
                 }

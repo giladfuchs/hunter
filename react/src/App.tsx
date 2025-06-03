@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-
+import { Toaster } from 'sonner';
 import { ThemeProvider, Theme } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
@@ -23,6 +23,7 @@ const App = () => {
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
+                <Toaster richColors closeButton position="bottom-center" />
                 <Locales>
                     <AuthProvider>
                         <AxiosInterceptor>

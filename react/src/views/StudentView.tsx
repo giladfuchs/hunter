@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import MainCard from 'ui-component/cards/MainCard';
-
 import SubCard from 'ui-component/cards/SubCard';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -24,11 +24,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteRowById, setAssignments, setUserAndStudentId } from '../store/generalSlice';
 import { AppDispatch } from 'store';
-import { FormattedMessage } from 'react-intl';
 import API from '../utils/axios';
 import { array_obj_to_obj_with_key } from '../utils/transformation';
 
 const StudentProfile = ({ student }: { student: Student }) => {
+    const intl = useIntl();
     const dispatch = useDispatch<AppDispatch>(); // use your typed dispatch
     const navigate = useNavigate();
 
@@ -37,7 +37,8 @@ const StudentProfile = ({ student }: { student: Student }) => {
             await dispatch(
                 deleteRowById({
                     model: ModelType.student,
-                    id
+                    id,
+                    message: intl.formatMessage({ id: `success.delete.${ModelType.student}` })
                 })
             ).unwrap();
             console.log('Assignment deleted successfully');
@@ -100,6 +101,7 @@ const StudentProfile = ({ student }: { student: Student }) => {
 };
 
 const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
+    const intl = useIntl();
     const dispatch = useDispatch<AppDispatch>();
     const [localAssignments, setLocalAssignments] = useState<Assignment[]>(assignments);
 
@@ -109,7 +111,13 @@ const AssignmentCard = ({ assignments }: { assignments: Assignment[] }) => {
 
     const handleDelete = async (id: number) => {
         try {
-            await dispatch(deleteRowById({ model: ModelType.assignment, id })).unwrap();
+            await dispatch(
+                deleteRowById({
+                    model: ModelType.assignment,
+                    id,
+                    message: intl.formatMessage({ id: `success.delete.${ModelType.assignment}` })
+                })
+            ).unwrap();
             setLocalAssignments(localAssignments.filter((assignment) => assignment.id !== id));
         } catch (error) {
             console.error('Failed to delete assignment', error);

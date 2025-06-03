@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction, ActionReducerMapBuilder } from '@reduxjs/toolkit';
+import { toast } from 'sonner';
 import { Assignment, FilterQuery, ModelType, Student, Teacher } from '../types';
 import API from '../utils/axios';
 
@@ -34,20 +35,25 @@ export const fetchRowsByModel = createAsyncThunk('models/fetch_rows', async (par
 
 export const createOrUpdateRow = createAsyncThunk(
     'models/create_or_update_row',
-    async ({ model, data, id }: { model: ModelType; data: Record<string, any>; id: string }) => {
+    async ({ model, data, id, message }: { model: ModelType; data: Record<string, any>; id: string; message: string }) => {
         const response = await API.post(`${model}/${id}`, data);
+        toast.success(message);
         return response.data;
     }
 );
 
-export const deleteRowById = createAsyncThunk('models/delete_row', async ({ model, id }: { model: ModelType; id: string | number }) => {
-    const data = { query: [{ key: 'id', value: id, opt: 'eq' }] };
-    await API.delete(`/${model}`, { data });
-    return { model, id };
-});
+export const deleteRowById = createAsyncThunk(
+    'models/delete_row',
+    async ({ model, id, message }: { model: ModelType; id: string | number; message: string }) => {
+        const data = { query: [{ key: 'id', value: id, opt: 'eq' }] };
+        await API.delete(`/${model}`, { data });
+        toast.success(message);
+        return { model, id };
+    }
+);
 
 const generalSlice = createSlice({
-    name: 'models',
+    name: 'general',
     initialState,
     reducers: {
         setLoading(state, action: PayloadAction<boolean>) {

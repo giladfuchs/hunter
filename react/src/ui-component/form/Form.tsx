@@ -40,7 +40,8 @@ const Form = () => {
             data.student_id = student_id;
         }
         try {
-            await dispatch(createOrUpdateRow({ model, data, id })).unwrap();
+            const message = intl.formatMessage({ id: is_add ? 'toast.create_success' : 'toast.edit_success' }, { model });
+            await dispatch(createOrUpdateRow({ model, data, id, message })).unwrap();
             if (model === ModelType.teacher) navigate(`/login`);
             else if (model === ModelType.student && is_add) navigate(`/${ModelType.student}`);
             else navigate(`/view/${student_id}`);
