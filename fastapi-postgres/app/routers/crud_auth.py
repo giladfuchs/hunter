@@ -39,16 +39,3 @@ def generate_crud_auth_routes(model: Type[DBModel], prefix: str):
 
     return router
 
-
-# curl 'http://0.0.0.0:5001/student' \
-#   -X 'POST' \
-#   -H 'Accept: application/json, text/plain, */*' \
-#   -H 'Accept-Language: en-US,en;q=0.9,es-US;q=0.8,es-CO;q=0.7,es;q=0.6,he-IL;q=0.5,he;q=0.4' \
-#   -H 'Access-Control-Expose-Headers: Access-Token' \
-#   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDg0NDIzOTAsIm5iZiI6MTc0ODQ0MjM5MCwiZXhwIjoxNzQ4NDQ1OTkwLCJpZCI6Mn0.-bcQ8WUvijMMc1j-8T0o0aAwj_CUjq11XLhwVw5Vlkg' \
-#   -H 'Connection: keep-alive' \
-#   -H 'Content-Length: 0' \
-#   -H 'Origin: http://localhost:3030' \
-#   -H 'Referer: http://localhost:3030/' \
-#   -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36' \
-#   --insecure
