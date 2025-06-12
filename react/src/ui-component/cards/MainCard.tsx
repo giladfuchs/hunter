@@ -12,8 +12,6 @@ const headerSX = {
     '& .MuiCardHeader-action': { mr: 0 }
 };
 
-// ==============================|| CUSTOM MAIN CARD ||============================== //
-
 export interface MainCardProps extends KeyedObject {
     border?: boolean;
     boxShadow?: boolean;

@@ -20,5 +20,9 @@
     "ag.header.phone": "Phone",
     "ag.header.grade": "Grade",
     "ag.header.assignments": "Assignments",
-    "ag.header.id": "View"
+    "ag.header.id": "View",
+    "success.delete.student": "Student deleted successfully\nAlso all of their assignments were deleted.",
+    "success.delete.assignment": "Assignment deleted successfully",
+    "toast.create_success": "Successfully created {model}",
+    "toast.edit_success": "Successfully updated {model}"
 }

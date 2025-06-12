@@ -14,8 +14,6 @@ import { create } from 'jss';
 import rtl from 'jss-rtl';
 import rtlPlugin from 'stylis-plugin-rtl';
 
-// ==============================|| RTL LAYOUT ||============================== //
-
 const jss = create({
     plugins: [...jssPreset().plugins, rtl()]
 });

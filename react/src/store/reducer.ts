@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux';
 
 import customizationReducer from './customizationReducer';
-import modelReducer from './modelSlice';
-
-// ==============================|| COMBINE REDUCER ||============================== //
+import generalReducer from './generalSlice';
 
 const reducer = combineReducers({
     customization: customizationReducer,
-    models: modelReducer
+    general: generalReducer
 });
 
 export default reducer;

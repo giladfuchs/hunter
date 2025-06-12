@@ -18,8 +18,6 @@ export const initialState: DefaultRootStateProps['customization'] = {
     openDrawer: false
 };
 
-// ==============================|| CUSTOMIZATION REDUCER ||============================== //
-
 const customizationReducer = (state = initialState, action: CustomizationStateProps) => {
     let id;
     switch (action.type) {

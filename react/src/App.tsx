@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-
+import { Toaster } from 'sonner';
 import { ThemeProvider, Theme } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
@@ -9,6 +9,7 @@ import themes from 'themes';
 import Locales from 'ui-component/layout/Locales';
 import { AuthProvider } from 'contexts/UseAuth';
 import AxiosInterceptor from './contexts/AxiosInterceptor';
+import Loader from './ui-component/layout/Loader';
 
 declare module '@mui/styles/defaultTheme' {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -17,16 +18,17 @@ declare module '@mui/styles/defaultTheme' {
 
 const App = () => {
     const customization = useSelector((state: DefaultRootStateProps) => state.customization);
+    const { loading } = useSelector((state: DefaultRootStateProps) => state.general);
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
+                <Toaster richColors closeButton position="bottom-center" />
                 <Locales>
                     <AuthProvider>
                         <AxiosInterceptor>
-                            <>
-                                <Routes />
-                            </>
+                            {loading && <Loader />}
+                            <Routes />
                         </AxiosInterceptor>
                     </AuthProvider>
                 </Locales>

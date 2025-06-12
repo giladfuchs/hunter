@@ -21,7 +21,7 @@ services:
       context: ../fastapi-postgres
       dockerfile: ../docker/Dockerfile_Fastapi
     restart: always
-    command: bash docker/start_server.sh
+    command: bash start_server.sh
     depends_on:
       - db
     environment:

@@ -5,7 +5,7 @@ import MainCard from 'ui-component/cards/MainCard';
 
 import { DefaultRootStateProps, get_columns_mui_by_model, ModelType } from 'types';
 
-import { fetchRowsByModel } from '../../store/modelSlice';
+import { fetchRowsByModel } from '../../store/generalSlice';
 import { Link } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { FormattedMessage } from 'react-intl';
@@ -14,7 +14,7 @@ const MuiTable = ({ model }: { model: ModelType }) => {
     const cells = get_columns_mui_by_model(model);
     const dispatch = useDispatch();
 
-    const rows = useSelector((state: DefaultRootStateProps) => state.models.list[model]);
+    const rows = useSelector((state: DefaultRootStateProps) => state.general.models[model]);
 
     React.useEffect(() => {
         dispatch(fetchRowsByModel({ model }));

@@ -11,8 +11,6 @@ const LoaderWrapper = styled('div')({
     width: '100%'
 });
 
-// ==============================|| LOADER ||============================== //
-
 export interface LoaderProps extends LinearProgressProps {}
 
 const Loader = () => (

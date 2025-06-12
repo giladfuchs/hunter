@@ -1,11 +1,11 @@
 import React, { FunctionComponent, ReactElement } from 'react';
-import { PaletteMode, SvgIconTypeMap, SnackbarOrigin, ChipProps } from '@mui/material';
+import { PaletteMode, SvgIconTypeMap, ChipProps } from '@mui/material';
 import { Property } from 'csstype';
 
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 import { TablerIcon } from '@tabler/icons';
-import { ModelState } from '../store/modelSlice';
+import { ModelState } from '../store/generalSlice';
 
 export * from './general';
 export * from './table';
@@ -60,22 +60,9 @@ export interface CustomizationStateProps {
     openDrawer: boolean;
 }
 
-export interface SnackbarStateProps {
-    action: boolean;
-    open: boolean;
-    message: string;
-    anchorOrigin: SnackbarOrigin;
-    variant: string;
-    alertSeverity: 'error' | 'warning' | 'success';
-    transition: string;
-    close: boolean;
-    actionButton: boolean;
-}
-
 export interface DefaultRootStateProps {
     customization: CustomizationStateProps;
-    snackbar: SnackbarStateProps;
-    models: ModelState;
+    general: ModelState;
 }
 
 export interface ColorProps {
@@ -98,7 +85,12 @@ export type KeyedObject = {
     [key: string]: string | number | KeyedObject | any;
 };
 
-export interface initialLoginContextProps {
+export interface initialAuthContextProps {
     isLoggedIn: boolean;
     isInitialized: boolean;
+}
+
+export interface authReducerActionProps {
+    type: string;
+    payload?: { isLoggedIn: boolean };
 }

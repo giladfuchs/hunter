@@ -1,4 +1,4 @@
-// action - account reducer
+// action - auth context reducer
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 

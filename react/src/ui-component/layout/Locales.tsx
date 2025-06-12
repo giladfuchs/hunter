@@ -19,7 +19,6 @@ const loadLocaleData = (locale: string) => {
     }
 };
 
-// ==============================|| LOCALIZATION ||============================== //
 export interface LocalsProps {
     children: React.ReactNode;
 }

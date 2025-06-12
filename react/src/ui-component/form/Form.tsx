@@ -4,7 +4,7 @@ import { create_form_fields, FormField, get_form_by_model } from '../../types/fo
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import { array_obj_to_obj_with_key } from '../../utils/transformation';
-import { createOrUpdateRow } from 'store/modelSlice';
+import { createOrUpdateRow } from 'store/generalSlice';
 import { AppDispatch } from 'store';
 import { FormattedMessage, useIntl } from 'react-intl';
 import DynamicForm from './DynamicForm';
@@ -20,9 +20,9 @@ const Form = () => {
         id: string;
         model: ModelType;
     };
-    const { list, student_id, user_id } = useSelector((state: DefaultRootStateProps) => state.models);
+    const { models, student_id, user_id } = useSelector((state: DefaultRootStateProps) => state.general);
 
-    const model_objs = list[model];
+    const model_objs = models[model];
     const is_add: boolean = id === 'add';
 
     const obj = is_add ? {} : array_obj_to_obj_with_key(model_objs, id, 'id') ?? {};
@@ -40,7 +40,8 @@ const Form = () => {
             data.student_id = student_id;
         }
         try {
-            await dispatch(createOrUpdateRow({ model, data, id })).unwrap();
+            const message = intl.formatMessage({ id: is_add ? 'toast.create_success' : 'toast.edit_success' }, { model });
+            await dispatch(createOrUpdateRow({ model, data, id, message })).unwrap();
             if (model === ModelType.teacher) navigate(`/login`);
             else if (model === ModelType.student && is_add) navigate(`/${ModelType.student}`);
             else navigate(`/view/${student_id}`);
